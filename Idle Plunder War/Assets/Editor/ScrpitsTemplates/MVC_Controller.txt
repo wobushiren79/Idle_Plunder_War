@@ -59,7 +59,7 @@ public class #ScriptName#Controller : BaseMVCController<#ScriptName#Model, I#Scr
     /// 根据ID获取数据
     /// </summary>
     /// <param name="action"></param>
-    public void Get#ScriptName#DataById(long id,Action<List<#ScriptName#Bean>> action)
+    public void Get#ScriptName#DataById(long id,Action<#ScriptName#Bean> action)
     {
         List<#ScriptName#Bean> listData = GetModel().Get#ScriptName#DataById(id);
         if (CheckUtil.ListIsNull(listData))
@@ -68,7 +68,7 @@ public class #ScriptName#Controller : BaseMVCController<#ScriptName#Model, I#Scr
         }
         else
         {
-            GetView().Get#ScriptName#Success<List<#ScriptName#Bean>>(listData, action);
+            GetView().Get#ScriptName#Success(listData[0], action);
         }
     }
 } 

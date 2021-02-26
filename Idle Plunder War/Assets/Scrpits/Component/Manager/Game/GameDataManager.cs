@@ -1,17 +1,21 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class GameDataManager : BaseManager,IGameConfigView
+public class GameDataManager : BaseManager,IGameConfigView,IBaseDataView
 {    
     //游戏设置
     public GameConfigBean gameConfig;
 
-    public  GameConfigController controllerForGameConfig;
+    public GameConfigController controllerForGameConfig;
+    public BaseDataController baseDataController;
 
     protected void Awake()
     {
         controllerForGameConfig = new GameConfigController(this, this);
         controllerForGameConfig.GetGameConfigData();
+        baseDataController = new BaseDataController(this,this);
+        baseDataController.InitAllBaseData();
     }
 
     /// <summary>
@@ -31,7 +35,7 @@ public class GameDataManager : BaseManager,IGameConfigView
         return gameConfig;
     }
 
-    #region 游戏设置数据回掉
+    #region 游戏数据回掉
     public void GetGameConfigFail()
     {
 
@@ -48,6 +52,16 @@ public class GameDataManager : BaseManager,IGameConfigView
     }
 
     public void SetGameConfigSuccess(GameConfigBean configBean)
+    {
+
+    }
+
+    public void GetAllBaseDataSuccess(List<BaseDataBean> listData)
+    {
+
+    }
+
+    public void GetAllBaseDataFail(string failMsg)
     {
 
     }
