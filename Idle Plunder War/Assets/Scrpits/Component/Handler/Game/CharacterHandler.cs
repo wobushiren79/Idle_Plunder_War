@@ -11,14 +11,13 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
     /// </summary>
     /// <param name="ids"></param>
     /// <param name="position"></param>
-    public void CreatePlayerCharacter(List<long> ids, Vector3 position)
+    public void CreatePlayerCharacter(long id, Vector3 position)
     {
-        for (int i = 0; i < ids.Count; i++)
-        {
-            long characterId = ids[i];
-            CharacterInfoBean data = manager.GetCharacterInfoById(characterId);
-            CreateCharacter(CharacterCampEnum.Player, data, position);
-        }
+        CharacterInfoBean data = manager.GetCharacterInfoById(id);
+        Character character = CreateCharacter(CharacterCampEnum.Player, data, position);
+
+        CharacterForPlayer characterForPlayer = character as CharacterForPlayer;
+        characterForPlayer.characterAI.ChangeIntent(AIIntentEnum.CharacterPlayerIdle);
     }
 
     /// <summary>
@@ -29,7 +28,10 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
     public void CreateEnemyCharacter(long id, Vector3 position)
     {
         CharacterInfoBean data = manager.GetCharacterInfoById(id);
-        CreateCharacter(CharacterCampEnum.Enemy, data, position);
+        Character character = CreateCharacter(CharacterCampEnum.Enemy, data, position);
+
+        CharacterForEnemy characterForEnemy= character as CharacterForEnemy;
+        characterForEnemy.characterAI.ChangeIntent(AIIntentEnum.CharacterEnemyIdle);
     }
 
     /// <summary>
@@ -38,7 +40,7 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
     /// <param name="characterCamp"></param>
     /// <param name="characterInfo"></param>
     /// <param name="position"></param>
-    protected void CreateCharacter(CharacterCampEnum characterCamp, CharacterInfoBean characterInfo, Vector3 position)
+    protected Character CreateCharacter(CharacterCampEnum characterCamp, CharacterInfoBean characterInfo, Vector3 position)
     {
         //获取模型
         GameObject objBaseModel = manager.GetCharacterBaseModel(characterCamp);
@@ -46,9 +48,14 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
         //实例化
         GameObject objChacater = Instantiate(gameObject, objBaseModel, position);
         Instantiate(objChacater, objLookModel);
+        objChacater.name = SystemUtil.GetUUID(SystemUtil.UUIDTypeEnum.N);
         //设置数据
         Character character = objChacater.GetComponent<Character>();
-        character.SetData(characterInfo);
+        character.SetData(characterCamp,characterInfo);
+        //记录进list
+        manager.AddCharacter(character);
+
+        return character;
     }
 
 }

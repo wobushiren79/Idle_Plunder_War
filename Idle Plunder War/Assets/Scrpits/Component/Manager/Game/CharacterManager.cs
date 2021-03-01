@@ -11,10 +11,14 @@ public class CharacterManager : BaseManager, ICharacterInfoView
     //角色信息数据
     public Dictionary<long, CharacterInfoBean> dicCharacterInfo = new Dictionary<long, CharacterInfoBean>();
 
+    public List<Character> listPlayerCharacter = new List<Character>();
+    public List<Character> listEnemyCharacter = new List<Character>();
+
     private void Awake()
     {
         InitAllCharacterInfo();
     }
+
 
     /// <summary>
     /// 初始化所有数据
@@ -39,6 +43,41 @@ public class CharacterManager : BaseManager, ICharacterInfoView
 
 
     /// <summary>
+    /// 分配对手
+    /// </summary>
+    /// <param name="character"></param>
+    public Character DistributeRival(Character character)
+    {
+        List<Character> listRival = null;
+        if (character.characterCamp == CharacterCampEnum.Player)
+        {
+            listRival = listEnemyCharacter;
+        }
+        else if (character.characterCamp == CharacterCampEnum.Enemy)
+        {
+            listRival = listPlayerCharacter;
+        }
+        if (CheckUtil.ListIsNull(listRival))
+        {
+            return null;
+        }
+        float mindistance = float.MaxValue;
+        Character rivalCharacter = null;
+        for (int i = 0; i < listRival.Count; i++)
+        {
+            Character itemRivalCharacter = listRival[i];
+            //选择距离最近的对手
+            float tempDis = Vector3.Distance(character.transform.position, itemRivalCharacter.transform.position);
+            if (tempDis < mindistance)
+            {
+                rivalCharacter = itemRivalCharacter;
+                mindistance = tempDis;
+            }
+        }
+        return rivalCharacter;
+    }
+
+    /// <summary>
     /// 根据ID获取角色数据
     /// </summary>
     /// <param name="id"></param>
@@ -47,7 +86,7 @@ public class CharacterManager : BaseManager, ICharacterInfoView
     {
         if (dicCharacterInfo == null || dicCharacterInfo.Count == 0)
             return null;
-        if(dicCharacterInfo.TryGetValue(id,out CharacterInfoBean value))
+        if (dicCharacterInfo.TryGetValue(id, out CharacterInfoBean value))
         {
             return value;
         }
@@ -88,16 +127,54 @@ public class CharacterManager : BaseManager, ICharacterInfoView
     }
 
     /// <summary>
+    /// 添加角色
+    /// </summary>
+    /// <param name="character"></param>
+    public void AddCharacter(Character character)
+    {
+        if (character.characterCamp == CharacterCampEnum.Enemy)
+        {
+            listEnemyCharacter.Add(character);
+        }
+        else if (character.characterCamp == CharacterCampEnum.Player)
+        {
+            listPlayerCharacter.Add(character);
+        }
+    }
+
+    /// <summary>
+    /// 移除角色
+    /// </summary>
+    /// <param name="character"></param>
+    public void RemoveCharacter(Character character)
+    {
+        if (character.characterCamp == CharacterCampEnum.Enemy)
+        {
+            if (listEnemyCharacter.Contains(character))
+                listEnemyCharacter.Remove(character);
+        }
+        else if (character.characterCamp == CharacterCampEnum.Player)
+        {
+            if (listPlayerCharacter.Contains(character))
+                listPlayerCharacter.Remove(character);
+        }
+    }
+
+    /// <summary>
     /// 清除所有角色
     /// </summary>
     public void ClearAllCharacter()
     {
         CptUtil.RemoveChildsByActive(gameObject);
+        listPlayerCharacter.Clear();
+        listEnemyCharacter.Clear();
     }
 
     public void ClearAllCharacterInEditor()
     {
         CptUtil.RemoveChildsByActiveInEditor(gameObject);
+        listPlayerCharacter.Clear();
+        listEnemyCharacter.Clear();
     }
 
 
