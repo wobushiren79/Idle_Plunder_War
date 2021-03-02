@@ -47,6 +47,11 @@ public class IntentCharacterForBattle : AIBaseIntent
     {
         Character character = characterAI.character;
         Character rivalCharacter = characterAI.rivalCharacter;
+        //如果死亡则处理
+        if (rivalCharacter == null || rivalCharacter.currentLife <= 0)
+        {
+            return;
+        }
         float distance = Vector3.Distance(character.transform.position, rivalCharacter.transform.position);
         if (distance > character.characterInfoData.attribute_atk_range)
         {

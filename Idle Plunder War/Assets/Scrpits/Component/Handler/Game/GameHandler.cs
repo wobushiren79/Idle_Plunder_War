@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class GameHandler : BaseHandler<GameHandler, GameManager>
 {
+
+    public float timeCountdownForCreatePlayer = 0;
+
     public void InitGame(Action callBack)
     {
         //初始化游戏数据
@@ -30,6 +33,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
 
     public void StartGame()
     {
+        UIHandler.Instance.manager.OpenUIAndCloseOther<UIGameMain>(UIEnum.GameMain);
         manager.gameData.SetGameStatus(GameStatusEnum.InGame);
         StartCoroutine(CoroutineForCreatePlayerCharacter());
     }
@@ -74,6 +78,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         }
     }
 
+
     /// <summary>
     /// 协程-创建友方角色
     /// </summary>
@@ -86,7 +91,12 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         while (manager.gameData.gameStatus == GameStatusEnum.InGame)
         {
             CreatePlayer(userData.teamData);
-            yield return new WaitForSeconds(sceneInfo.character_build_interval);
+            timeCountdownForCreatePlayer = sceneInfo.character_build_interval;
+            while (timeCountdownForCreatePlayer > 0)
+            {
+                yield return new WaitForSeconds(1);
+                timeCountdownForCreatePlayer -= 1;
+            }
         }
     }
 }
