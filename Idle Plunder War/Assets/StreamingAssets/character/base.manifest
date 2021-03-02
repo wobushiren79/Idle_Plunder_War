@@ -1,0 +1,36 @@
+ManifestFileVersion: 0
+CRC: 4107094920
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f953741a8e5d1e137054d72d4b0a9bb0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 291ecc79a4cc589e9719774bc3eb6d35
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3afa559f04c441540ae7e12b56f34699, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e21c13a6e143814a8cbb198b6ad210d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4635449e10efc9b42a89bfbaccd75482, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Character/Base/PlayerCharacter.prefab
+- Assets/Prefabs/Character/Base/EnemyCharacter.prefab
+Dependencies: []

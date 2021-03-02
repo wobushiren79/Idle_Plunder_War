@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class CharacterMove : BaseMonoBehaviour
 {
-    protected RichAI aiPath;
+    protected AIPath aiPath;
 
     private void Awake()
     {
         if (aiPath == null)
-            aiPath = GetComponent<RichAI>();
+            aiPath = GetComponent<AIPath>();
+    }
+
+    /// <summary>
+    /// 设置速度
+    /// </summary>
+    /// <param name="speed"></param>
+    public void SetSpeed(float speed)
+    {
+        aiPath.maxSpeed = speed;
     }
 
     /// <summary>
@@ -19,7 +28,7 @@ public class CharacterMove : BaseMonoBehaviour
     public void SetDestination(Vector3 targetPosition)
     {
         StopMove();
-        aiPath.acceleration = float.MaxValue;
+        aiPath.maxAcceleration = float.MaxValue;
         aiPath.destination = targetPosition;
         aiPath.SearchPath();
         aiPath.onSearchPath = () =>

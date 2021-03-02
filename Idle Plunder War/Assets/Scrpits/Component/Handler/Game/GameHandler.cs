@@ -51,7 +51,10 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         for (int i = 0; i < listEnemyData.Count; i++)
         {
             EnemyCharacterData enemyData = listEnemyData[i];
-            CharacterHandler.Instance.CreateEnemyCharacter(enemyData.enemyId, enemyData.position.GetVector3());
+            Character character = CharacterHandler.Instance.CreateEnemyCharacter(enemyData.enemyId, enemyData.position.GetVector3(), enemyData.eulerAngles.GetVector3());
+
+            CharacterForEnemy characterForEnemy = character as CharacterForEnemy;
+            characterForEnemy.characterAI.ChangeIntent(AIIntentEnum.CharacterEnemyIdle);
         }
     }
 
@@ -77,8 +80,9 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
     /// <returns></returns>
     public IEnumerator CoroutineForCreatePlayerCharacter()
     {
-        SceneInfoBean sceneInfo = manager.sceneInfoData;
+        SceneInfoBean sceneInfo = manager.GetSceneInfo();
         UserDataBean userData = GameDataHandler.Instance.manager.GetUserData();
+
         while (manager.gameData.gameStatus == GameStatusEnum.InGame)
         {
             CreatePlayer(userData.teamData);

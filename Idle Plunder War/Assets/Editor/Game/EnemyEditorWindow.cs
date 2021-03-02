@@ -47,12 +47,14 @@ public class EnemyEditor : EditorWindow
         sceneInfo.id = EditorUI.GUIEditorText(sceneInfo.id);
         EditorUI.GUIText("友方角色生成间隔", 150);
         sceneInfo.character_build_interval = EditorUI.GUIEditorText(sceneInfo.character_build_interval);
+        EditorUI.GUIText("敌人活动范围半径",150);
+        sceneInfo.enemy_range = EditorUI.GUIEditorText(sceneInfo.enemy_range);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space(50);
 
         EditorGUILayout.BeginHorizontal();
-        if (EditorUI.GUIButton("生成单个角色", 150)) { CreateCharacter(characterId, Vector3.zero); };
+        if (EditorUI.GUIButton("生成单个角色", 150)) { CreateCharacter(characterId, Vector3.zero, Vector3.zero); };
         EditorUI.GUIText("角色ID");
         characterId = EditorUI.GUIEditorText(characterId);
         EditorGUILayout.EndHorizontal();
@@ -72,7 +74,7 @@ public class EnemyEditor : EditorWindow
             CharacterHandler.Instance.manager.ClearAllCharacterInEditor();
             foreach (EnemyCharacterData itemData in listEnemyData)
             {
-                CreateCharacter(itemData.enemyId, itemData.position.GetVector3());
+                CreateCharacter(itemData.enemyId, itemData.position.GetVector3(), itemData.eulerAngles.GetVector3()); ;
             }
         }
     }
@@ -90,6 +92,7 @@ public class EnemyEditor : EditorWindow
             long characterId = itemData.characterInfoData.id;
             EnemyCharacterData enemyData = new EnemyCharacterData();
             enemyData.position = new Vector3Bean(itemData.transform.position);
+            enemyData.eulerAngles = new Vector3Bean(itemData.transform.eulerAngles);
             enemyData.enemyId = characterId;
             listEnemyData.Add(enemyData);
         }
@@ -102,10 +105,10 @@ public class EnemyEditor : EditorWindow
     /// </summary>
     /// <param name="id"></param>
     /// <param name="position"></param>
-    protected void CreateCharacter(long id, Vector3 position)
+    protected void CreateCharacter(long id, Vector3 position, Vector3 eulerAngles)
     {
         CharacterHandler.Instance.manager.InitAllCharacterInfo();
-        CharacterHandler.Instance.CreateEnemyCharacter(id, position);
+        CharacterHandler.Instance.CreateEnemyCharacter(id, position, eulerAngles);
     }
 
 }

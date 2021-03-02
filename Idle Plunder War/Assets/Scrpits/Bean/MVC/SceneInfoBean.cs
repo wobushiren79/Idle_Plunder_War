@@ -16,6 +16,8 @@ public class SceneInfoBean : BaseBean
 
     public string enemy_data;
 
+    public float enemy_range;
+
     public List<EnemyCharacterData> GetListEnemyData()
     {
         DataStorageListBean<EnemyCharacterData> enemyBaseData = JsonUtil.FromJson<DataStorageListBean<EnemyCharacterData>>(enemy_data);

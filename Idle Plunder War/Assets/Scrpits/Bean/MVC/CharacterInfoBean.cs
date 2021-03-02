@@ -15,8 +15,10 @@ public class CharacterInfoBean : BaseBean
     public string model_name;
     //ÊôĞÔ
     public float attribute_speed;
-    public float attribute_atk;
+    public int attribute_atk;
     public float attribute_atk_range;
+    public float attribute_atk_interval;
+    public float attribute_eye_range;
     public int attribute_life;
     //±ÈÖØ
     public int weight;

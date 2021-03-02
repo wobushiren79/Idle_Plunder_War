@@ -25,6 +25,11 @@ public class GameManager : BaseManager, ISceneInfoView
         sceneInfoController.GetSceneInfoDataById(id, action);
     }
 
+    public SceneInfoBean GetSceneInfo()
+    {
+        return sceneInfoData;
+    }
+
     #region 数据回调
     public void GetSceneInfoSuccess<T>(T data, Action<T> action)
     {

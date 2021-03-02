@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class CharacterForPlayer : Character
 {
-    public AICharacterEntity characterAI;
 
     public override void Awake()
     {

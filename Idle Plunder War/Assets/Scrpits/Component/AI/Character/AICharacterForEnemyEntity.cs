@@ -9,5 +9,6 @@ public class AICharacterForEnemyEntity : AICharacterEntity
         base.InitData(character);
         //增加意图
         AddIntent(new IntentCharacterForEnemyIdle(this));
+        AddIntent(new IntentCharacterForEnemyBack(this));
     }
 }

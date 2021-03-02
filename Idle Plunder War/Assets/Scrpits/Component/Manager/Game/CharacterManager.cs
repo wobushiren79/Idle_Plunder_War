@@ -61,17 +61,17 @@ public class CharacterManager : BaseManager, ICharacterInfoView
         {
             return null;
         }
-        float mindistance = float.MaxValue;
+        float minDistance = float.MaxValue;
         Character rivalCharacter = null;
         for (int i = 0; i < listRival.Count; i++)
         {
             Character itemRivalCharacter = listRival[i];
             //选择距离最近的对手
             float tempDis = Vector3.Distance(character.transform.position, itemRivalCharacter.transform.position);
-            if (tempDis < mindistance)
+            if (tempDis < minDistance)
             {
                 rivalCharacter = itemRivalCharacter;
-                mindistance = tempDis;
+                minDistance = tempDis;
             }
         }
         return rivalCharacter;
