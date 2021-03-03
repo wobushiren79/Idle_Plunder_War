@@ -56,4 +56,16 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
         return character;
     }
 
+    /// <summary>
+    /// 刷新友方角色
+    /// </summary>
+    public void RefreshPlayerCharacter()
+    {
+        List<Character> listPlayerCharacter = manager.listPlayerCharacter;
+        for (int i = 0; i < listPlayerCharacter.Count; i++)
+        {
+            Character itemCharacter = listPlayerCharacter[i];
+            itemCharacter.RefreshData();
+        }
+    }
 }

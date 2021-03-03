@@ -7,8 +7,10 @@ public class Character : BaseMonoBehaviour
     public CharacterInfoBean characterInfoData;
     public AICharacterEntity characterAI;
     public CharacterCampEnum characterCamp;
-    public int currentLife;
 
+    public int currentMaxLife;
+    public int currentLife;
+    public int currentAtk;
 
     public CharacterMove characterMove;
     protected Rigidbody characterRB;
@@ -35,7 +37,17 @@ public class Character : BaseMonoBehaviour
         this.characterCamp = characterCamp;
         this.characterInfoData = characterInfoData;
 
-        currentLife = characterInfoData.attribute_life;
+        RefreshData();
+    }
+
+    public void RefreshData()
+    {
+        GameBean gameData = GameHandler.Instance.manager.gameData;
+        LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForPower(gameData.levelForPower);
+        levelInfo.GetData(out float value1, out float value2);
+        currentMaxLife = characterInfoData.attribute_life + (int)value1;
+        currentLife = characterInfoData.attribute_life + (int)value1;
+        currentAtk = characterInfoData.attribute_atk + (int)value2;
         characterMove.SetSpeed(characterInfoData.attribute_speed);
     }
 
@@ -63,7 +75,7 @@ public class Character : BaseMonoBehaviour
         characterMove.ClosePath();
         transform
             .DOLocalRotate(new Vector3(90, 0, 0), 1, RotateMode.LocalAxisAdd)
-            .OnComplete(()=> { Destroy(gameObject); });
+            .OnComplete(() => { Destroy(gameObject); });
         //characterRB.useGravity = true;
         //characterRB.freezeRotation = false;
     }

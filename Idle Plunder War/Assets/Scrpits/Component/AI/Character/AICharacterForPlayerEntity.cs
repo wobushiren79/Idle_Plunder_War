@@ -9,6 +9,9 @@ public class AICharacterForPlayerEntity : AICharacterEntity
         base.InitData(character);
         //增加意图
         AddIntent(new IntentCharacterForPlayerIdle(this));
+        AddIntent(new IntentCharacterForMoveToTreasure(this));
+        AddIntent(new IntentCharacterForOpenTreasure(this));
     }
+
 
 }

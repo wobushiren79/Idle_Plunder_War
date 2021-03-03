@@ -11,6 +11,10 @@ public enum AIIntentEnum
     CharacterPlayerIdle,
     //角色前往目的地
     CharacterMoveToRival,
+    //角色前往宝藏处
+    CharacterMoveToTreasure,
+    //角色打开宝箱
+    CharacterOpenTreasure,
     //角色战斗模式
     CharacterBattle,
     //角色死亡

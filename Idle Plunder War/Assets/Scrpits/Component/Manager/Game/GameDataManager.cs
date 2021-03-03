@@ -9,6 +9,7 @@ public class GameDataManager : BaseManager, IGameConfigView, IBaseDataView, IUse
     public GameConfigBean gameConfig;
     public UserDataBean userData;
 
+
     public GameConfigController controllerForGameConfig;
     public UserDataController controllerForUserData;
     public BaseDataController controllerForBaseData;
@@ -21,6 +22,7 @@ public class GameDataManager : BaseManager, IGameConfigView, IBaseDataView, IUse
         controllerForBaseData.InitAllBaseData();
         controllerForUserData = new UserDataController(this, this);
         controllerForUserData.GetUserDataData(null);
+
     }
 
     /// <summary>
@@ -48,6 +50,8 @@ public class GameDataManager : BaseManager, IGameConfigView, IBaseDataView, IUse
     {
         return userData;
     }
+
+
 
     #region 游戏数据回掉
     public void GetGameConfigFail()

@@ -13,6 +13,8 @@ public class CharacterInfoBean : BaseBean
 {
     //模型名称
     public string model_name;
+    //兵种价值
+    public long price;
     //属性
     public float attribute_speed;
     public int attribute_atk;
@@ -22,5 +24,4 @@ public class CharacterInfoBean : BaseBean
     public int attribute_life;
     //比重
     public int weight;
-
 }

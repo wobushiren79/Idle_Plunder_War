@@ -28,6 +28,11 @@ public class IntentCharacterForPlayerIdle : AIBaseIntent
             characterAI.moveTarget = aiCharacter.rivalCharacter.transform.position;
             characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToRival);
         }
+        else
+        {
+            //前往宝藏
+            characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToTreasure);
+        }
     }
 
     public override void IntentLeaving()

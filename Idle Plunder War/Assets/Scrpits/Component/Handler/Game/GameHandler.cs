@@ -15,11 +15,11 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         GameBean gameData = manager.InitGameData();
         gameData.SetGameStatus(GameStatusEnum.Init);
         UserDataBean userData = GameDataHandler.Instance.manager.GetUserData();
-        if (userData ==null || CheckUtil.StringIsNull(userData.userId))
+        if (userData == null || CheckUtil.StringIsNull(userData.userId))
         {
             userData = GameDataHandler.Instance.CreateNewData();
         }
-            
+
         Action<SceneInfoBean> action = (data) =>
         {
             //创建敌人
@@ -36,6 +36,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         UIHandler.Instance.manager.OpenUIAndCloseOther<UIGameMain>(UIEnum.GameMain);
         manager.gameData.SetGameStatus(GameStatusEnum.InGame);
         StartCoroutine(CoroutineForCreatePlayerCharacter());
+        StartCoroutine(CoroutineForAddLevelUp());
     }
 
     public void EndGame()
@@ -70,7 +71,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
     {
         List<long> listMember = userTeam.listMember;
         //获取生成点位置
-        Transform positionPlayerBuild= GameSceneHandler.Instance.manager.positionPlayerBuild;
+        Transform positionPlayerBuild = GameSceneHandler.Instance.manager.positionPlayerBuild;
         for (int i = 0; i < listMember.Count; i++)
         {
             long memberId = listMember[i];
@@ -87,16 +88,33 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
     {
         SceneInfoBean sceneInfo = manager.GetSceneInfo();
         UserDataBean userData = GameDataHandler.Instance.manager.GetUserData();
-
+        GameBean gameData = manager.gameData;
         while (manager.gameData.gameStatus == GameStatusEnum.InGame)
         {
-            CreatePlayer(userData.teamData);
+            LevelInfoBean levelInfo = manager.GetLevelInfoForNumber(gameData.levelForNumber);
+            levelInfo.GetData(out float levelData);
+            int teamNumber = (int)levelData;
+            for (int i = 0; i < teamNumber; i++)
+            {
+                CreatePlayer(userData.teamData);
+            }
             timeCountdownForCreatePlayer = sceneInfo.character_build_interval;
             while (timeCountdownForCreatePlayer > 0)
             {
                 yield return new WaitForSeconds(1);
                 timeCountdownForCreatePlayer -= 1;
             }
+        }
+    }
+
+    public IEnumerator CoroutineForAddLevelUp()
+    {
+        GameBean gameData = manager.gameData;
+        while (manager.gameData.gameStatus == GameStatusEnum.InGame)
+        {
+            LevelInfoBean levelInfo = manager.GetLevelInfoForLevelUp(gameData.levelForUp);
+            gameData.AddLevelUpPro(levelInfo.pro);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

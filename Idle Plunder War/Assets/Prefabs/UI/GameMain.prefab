@@ -1662,6 +1662,12 @@ MonoBehaviour:
   ui_BtPowerAdd: {fileID: 0}
   ui_BtNumberAdd: {fileID: 0}
   ui_BtPriceAdd: {fileID: 0}
+  ui_TvPowerLevel: {fileID: 0}
+  ui_TvNumberLevel: {fileID: 0}
+  ui_TvPriceLevel: {fileID: 0}
+  ui_TvPowerMoney: {fileID: 0}
+  ui_TvNumberMoney: {fileID: 0}
+  ui_TvPriceMoney: {fileID: 0}
 --- !u!1 &8087757649057847344
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,9 +2072,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: BtPowerAdd
       objectReference: {fileID: 0}
+    - target: {fileID: 7929309530398364162, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 8345485339492595435, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: TvNumberMoney
+      value: TvPowerMoney
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
@@ -2239,6 +2249,10 @@ PrefabInstance:
     - target: {fileID: 7301529764986846650, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
       value: BtNumberAdd
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345485339492595435, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
+      propertyPath: m_Name
+      value: TvNumberMoney
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
@@ -2412,7 +2426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345485339492595435, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: TvSpeedMoney
+      value: TvPriceMoney
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}

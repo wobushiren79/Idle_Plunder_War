@@ -34,7 +34,7 @@ public class CharacterInfoController : BaseMVCController<CharacterInfoModel, ICh
             GetView().GetCharacterInfoFail("没有数据",null);
             return null;
         }
-        GetView().GetCharacterInfoSuccess<CharacterInfoBean>(data,action);
+        GetView().GetCharacterInfoSuccess(data,action);
         return data;
     }
 
@@ -51,7 +51,7 @@ public class CharacterInfoController : BaseMVCController<CharacterInfoModel, ICh
         }
         else
         {
-            GetView().GetCharacterInfoSuccess<List<CharacterInfoBean>>(listData, action);
+            GetView().GetCharacterInfoSuccess(listData, action);
         }
     }
 
@@ -68,7 +68,7 @@ public class CharacterInfoController : BaseMVCController<CharacterInfoModel, ICh
         }
         else
         {
-            GetView().GetCharacterInfoSuccess<CharacterInfoBean>(listData[0], action);
+            GetView().GetCharacterInfoSuccess(listData[0], action);
         }
     }
 } 

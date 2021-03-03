@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class IntentCharacterForBattle : AIBaseIntent
 {
-    protected AICharacterEntity characterAI; 
+    protected AICharacterEntity characterAI;
 
     protected float timeForHandleInterval = 0.5f;
     protected float timeForHandle = 0;
@@ -74,11 +74,11 @@ public class IntentCharacterForBattle : AIBaseIntent
         if (timeForAttack > 0)
             return;
         timeForAttack = characterAI.character.characterInfoData.attribute_atk_interval;
-        
-        int damage = characterAI.character.characterInfoData.attribute_atk;
+
+        int damage = characterAI.character.currentAtk;
 
         int enemyLife;
-        if (characterAI.rivalCharacter==null || characterAI.rivalCharacter.currentLife<=0)
+        if (characterAI.rivalCharacter == null || characterAI.rivalCharacter.currentLife <= 0)
         {
             enemyLife = 0;
         }

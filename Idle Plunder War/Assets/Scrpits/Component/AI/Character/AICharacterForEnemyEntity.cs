@@ -11,4 +11,6 @@ public class AICharacterForEnemyEntity : AICharacterEntity
         AddIntent(new IntentCharacterForEnemyIdle(this));
         AddIntent(new IntentCharacterForEnemyBack(this));
     }
+
+
 }
