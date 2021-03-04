@@ -197,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABAIew1fcbg4gEAAMQDAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGVU8Fy2jAQ/RXG5zZjEyCkxxImPRTo4BwyyfSwSGtbE1misgQEhn/vrrCDO5NLT7Le7nurfbs+JaICB8KjW4NUoUm+DbKb8ZdBIqzxNrgFHObOWUf4kFHUOldHpGt6kxGwB/0GG40/UJWVb7M6cKZVvYmprFjDIdd2y9zb9HKfyxJ/oil9xcwIKrPGUlnTVrklDKXy1j0pjS2YDacE+xZ4ZiRN0x70coVCg8zkxgrQDRLkUOMOjH90sK3y4AoQuLCSlZMHu7R+jX+CcphwLjTkDUnOrNZKomMh7wL2YwtsKvws8ITOgTKfRRz2GaJVX3fxB/SgdGwjWtW80fdpkOxAB37oZDQ4c8NQLi6x1998vdTLod5+mMUOOuvBk6kXjQOPhND39jzyGeUK6wTK7zYY2czQkNz/MNqCbX6WdoxRRyEokprK7tmzVfBaGbzawIElTWJmjUHBL+7PraO1I7vSDILDxud0iGpl9PvzS4+GhndxCbuauLPgvTLllVsGJf+1NimyqcjE8G5yL+R4g/JrNpwMp3f3o/R2U0xSHCexC2WUV6B/kb72nTO0371xG6ij4hoFDXYQF463SjrYP6pjbXsroExhc0FrYVYXjY+2aSFAk7dyHn+EHGMLTE1O5+T8F1BLAwQUAAAICAAAQCHs+d6lS28AAAB6AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UpqhRbJhspG5mWVyimlSaoquoZGZkYW5pYmBcVKamUGqqVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrpeUGpyYnGJO8hwpdhaAFBLAQItABQAAAgIAABAIew1fcbg4gEAAMQDAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAABAIez53qVLbwAAAHoAAAAJACQAAAAAAAAAAAAAAC8CAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAA6QIAAAAA
+    dataString: UEsDBBQAAAgIAABAIez7/svTiQIAAH8FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVFtv2jAU/ivIz9sULp1gb1ugdJNoUdnUh6UPxj4hFo4d+VKgFf+9x07SpHTSJCSH73znnO9c7BcilK2AOW2WRvCV5kC+DUj4Jp8GnfEGjnSn1UY8Q8t5ENwVgUQj5546oREfBjerS3BGsO9qJwM5QdArkWtTLvgOUm2dRTin0gKajHbBWyH0MiDHxuHUnM/hHJzxi4FyYP7H8opJWlbAg9qOPExaOn5FosJKGk5QzbSUwjYyiDtVscyUVtZjEUjggmJZUUDgFyB2hcM/o77zXZ5bcI0oQ09zYbA7dVTyQ9ctK6nd18qeqPQhzyiZTKOoOurqI2E4HEVCbnR506aui3KFYPt7emLUul5b+/D8vXavDlTu6VbCQwHqVi+N9oqj0RkfXL2F0bwX6q28tAC27xlquS3aelcfZzTsZnSOHTimUpTbgHyZ1MBG6tjzWfABg9P5iYrjZtgmEqJBxR8Lv+muv0KN4VoY69DUJFRB3VZ7E6hkEZsWqvEu1UZBhBvNFSgq3WmNYdzlGC9svbQXlmsaLkuTvLG1d+DCJcIdP0kuTGt96KZl4Zcvq7UWym2AGlb04tlCH1ZgizvvpFDQVRQMt9jEVCtVr6D9h9vGm5yynpuDo/MG5tTReBFQE64J77tiQ6OH8lKGjYxVhOB/sYrwewxNLijmlREmt1rFK/TufAyLsPOCv990wrfT4SwZTxI23V5xyj9ffZ3BNGf5hI0neTIbk3gRhMKeU7mum9aMCjdIdbUoXPr2PRssDa3i7eOGHpbiudS98QuV6w0zAOqujvBWLBhMgq8EX3CBZW7AOaHi7pGXjEjN9sCzt0BZbOzi6AzNuigZqcSTdgHJSBpfsYycyfkVUEsDBBQAAAgIAABAIeyoyruibQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgjilmSkgdrRSSpKFoaWBsYlBskWSaUpiiq6pmWWqRVpymkmysUmagaWxUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAABAIez7/svTiQIAAH8FAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAABAIeyoyruibQAAAHgAAAAJACQAAAAAAAAAAAAAANYCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAjgMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -446,6 +446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1826094754}
+  - component: {fileID: 1826094755}
   m_Layer: 0
   m_Name: PlayerBuild
   m_TagString: PlayerBuild
@@ -467,6 +468,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826094755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826094753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7d7c9b510590d43b8d105234ba3596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2117555328
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3510505338212102378, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 23.9
       objectReference: {fileID: 0}
     - target: {fileID: 3510505338212102378, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -693,23 +706,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3510505338212102378, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6830127
+      value: 0.6532815
       objectReference: {fileID: 0}
     - target: {fileID: 3510505338212102378, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.18301274
+      value: 0.27059805
       objectReference: {fileID: 0}
     - target: {fileID: 3510505338212102378, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.6830127
+      value: 0.6532815
       objectReference: {fileID: 0}
     - target: {fileID: 3510505338212102378, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.18301274
+      value: -0.27059805
       objectReference: {fileID: 0}
     - target: {fileID: 3510505338212102378, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 30
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3510505338212102378, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -718,6 +731,10 @@ PrefabInstance:
     - target: {fileID: 3510505338212102378, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848936420154714661, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
+      propertyPath: field of view
+      value: 105.1
       objectReference: {fileID: 0}
     - target: {fileID: 6004517754483796192, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_Name

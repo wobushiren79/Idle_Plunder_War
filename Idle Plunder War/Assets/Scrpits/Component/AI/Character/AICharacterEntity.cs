@@ -5,6 +5,8 @@ public class AICharacterEntity : AIBaseEntity
 {
     public Character character;
     public Character rivalCharacter;
+    public Treasure targetTreasure;
+    public Building targetBuilding;
 
     public Vector3 moveTarget;
 
@@ -14,6 +16,7 @@ public class AICharacterEntity : AIBaseEntity
         AddIntent(new IntentCharacterForMoveToRival(this));
         AddIntent(new IntentCharacterForBattle(this));
         AddIntent(new IntentCharacterForDead(this));
+        AddIntent(new IntentCharacterForRest(this));
     }
 
     /// <summary>

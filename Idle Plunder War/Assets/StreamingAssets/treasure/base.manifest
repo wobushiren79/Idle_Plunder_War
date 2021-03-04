@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 3608541794
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 67d17b647af1b1c3711db7465f1e4651
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 49d2788650712b64ead85ad879637aff
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: c6781e4497c2ce947b750f85841e1edf, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Treasure/Base/TreasureBase.prefab
+Dependencies: []

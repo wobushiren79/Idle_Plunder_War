@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4844575561509035893}
   - component: {fileID: 8574739532367588723}
   - component: {fileID: 3783203207349642758}
+  - component: {fileID: 5255119090991136663}
   m_Layer: 7
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -92,6 +93,7 @@ MonoBehaviour:
     id: 0
     valid: 0
     model_name: 
+    price: 0
     attribute_speed: 0
     attribute_atk: 0
     attribute_atk_range: 0
@@ -101,7 +103,9 @@ MonoBehaviour:
     weight: 0
   characterAI: {fileID: 0}
   characterCamp: 0
+  currentMaxLife: 0
   currentLife: 0
+  currentAtk: 0
   characterMove: {fileID: 0}
 --- !u!54 &4844575561509035893
 Rigidbody:
@@ -168,3 +172,25 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 0
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &5255119090991136663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205056673207494260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  smoothType: 0
+  subdivisions: 2
+  iterations: 2
+  strength: 0.5
+  uniformLength: 1
+  maxSegmentLength: 2
+  bezierTangentLength: 0.4
+  offset: 0.2
+  factor: 0.1

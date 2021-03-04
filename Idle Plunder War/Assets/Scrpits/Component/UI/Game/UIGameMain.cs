@@ -138,6 +138,8 @@ public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack
     public void OnClickForLevelUp()
     {
         GameBean gameData = GameHandler.Instance.manager.gameData;
+        if (gameData.levelUpPro < 1)
+            return;
         LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForLevelUp(gameData.levelForUp);
         levelInfo.GetData(out float levelData);
         gameData.AddGold((long)levelData);

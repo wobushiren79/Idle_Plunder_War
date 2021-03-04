@@ -7,6 +7,21 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
 {
 
     /// <summary>
+    /// 移动友方角色
+    /// </summary>
+    /// <param name="position"></param>
+    public void MovePlayerCharacter(Vector3 position)
+    {
+        List<Character> listPlayer = manager.listPlayerCharacter;
+        for (int i = 0; i < listPlayer.Count; i++)
+        {
+            Character itemCharacter= listPlayer[i];
+            itemCharacter.characterAI.moveTarget = position;
+            itemCharacter.characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToTouch);
+        }
+    }
+
+    /// <summary>
     /// 创建友军
     /// </summary>
     /// <param name="ids"></param>
