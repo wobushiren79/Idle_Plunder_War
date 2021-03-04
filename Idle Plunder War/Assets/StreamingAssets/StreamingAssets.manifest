@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 610235644
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: character/character
+      Dependencies: {}
+    Info_1:
+      Name: character/base
+      Dependencies: {}
+    Info_2:
+      Name: ui/ui
+      Dependencies: {}
