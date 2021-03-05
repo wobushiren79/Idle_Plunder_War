@@ -20,7 +20,18 @@ public class SceneInfoBean : BaseBean
 
     public float enemy_range;
 
-    public long treasure_id;
+    public string treasure_data;
+
+    public EnemyTreasureData GetTreasureData()
+    {
+        EnemyTreasureData enemyBaseData = JsonUtil.FromJson<EnemyTreasureData>(treasure_data);
+        return enemyBaseData;
+    }
+
+    public void SetTreasureData(EnemyTreasureData treasureData)
+    {
+        treasure_data = JsonUtil.ToJson(treasureData);
+    }
 
     public List<EnemyCharacterData> GetListEnemyData()
     {
