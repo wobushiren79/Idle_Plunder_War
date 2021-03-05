@@ -25,10 +25,12 @@ public class Character : BaseMonoBehaviour
             if (_characterRenderer == null)
             {
                 _characterRenderer = GetComponentInChildren<Renderer>();
+                characterColor = _characterRenderer.material.color;
             }
             return _characterRenderer;
         }
     }
+    protected Color characterColor;
 
 
     public virtual void Awake()
@@ -93,7 +95,7 @@ public class Character : BaseMonoBehaviour
     /// </summary>
     public void Injured()
     {
-        characterRenderer.material.color = Color.white;
+        characterRenderer.material.color = characterColor;
         characterRenderer.material.DOColor(Color.red, 0.5f).From();
     }
 

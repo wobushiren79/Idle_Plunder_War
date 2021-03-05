@@ -4,7 +4,7 @@ using UnityEngine;
 public class IntentCharacterForMoveToBuilding : AIBaseIntent
 {
     protected AICharacterEntity characterAI;
-    protected float timeForSearchInterval = 0.5f;
+    protected float timeForSearchInterval = 0.2f;
     protected float timeForSearch = 0;
     public IntentCharacterForMoveToBuilding(AICharacterEntity aiEntity) : base(AIIntentEnum.CharacterMoveToBuilding, aiEntity)
     {

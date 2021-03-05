@@ -51,6 +51,10 @@ public class GameDataManager : BaseManager, IGameConfigView, IBaseDataView, IUse
         return userData;
     }
 
+    public BaseDataBean GetBaseData(BaseDataEnum baseDataType)
+    {
+       return controllerForBaseData.GetBaseData(baseDataType);
+    }
 
 
     #region 游戏数据回掉

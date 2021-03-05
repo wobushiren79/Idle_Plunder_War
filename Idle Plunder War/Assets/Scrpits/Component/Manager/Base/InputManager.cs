@@ -10,7 +10,7 @@ public class InputManager : BaseManager
     {
         inputActions = new GameInputActions();
         inputActions.Player.TargetMove.Enable();
- 
+        inputActions.Player.CameraMove.Enable();
     }
 
     /// <summary>
@@ -22,4 +22,12 @@ public class InputManager : BaseManager
         return inputActions.Player.TargetMove;
     }
 
+    /// <summary>
+    /// 获取摄像头移动数据
+    /// </summary>
+    /// <returns></returns>
+    public InputAction GetCameraMoveData()
+    {
+        return inputActions.Player.CameraMove;
+    }
 }
