@@ -76,6 +76,7 @@ public class IntentCharacterForBattle : AIBaseIntent
         if (timeForAttack > 0)
             return;
         timeForAttack = characterAI.character.characterInfoData.attribute_atk_interval;
+        characterAI.character.characterAnim.PlayAttack();
 
         int damage = characterAI.character.currentAtk;
 
@@ -88,7 +89,7 @@ public class IntentCharacterForBattle : AIBaseIntent
         {
             enemyLife = characterAI.rivalCharacter.characterAI.UnderAttack(damage);
         }
-        characterAI.character.characterAnim.PlayAttack();
+
         //如果角色已经死亡
         if (enemyLife <= 0)
         {

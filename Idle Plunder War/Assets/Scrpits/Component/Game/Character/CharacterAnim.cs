@@ -19,31 +19,31 @@ public class CharacterAnim : BaseMonoBehaviour
 
     public void PlayIdle()
     {
-        characterAnim.Play("idle");
+        characterAnim.Play("idle", 0, 0.05f);
     }
 
     public void PlayWalk()
     {
-        characterAnim.Play("walk");
+        characterAnim.Play("walk", 0, 0.05f);
     }
 
     public void PlayAttack()
     {
-        characterAnim.Play("attack");
+        characterAnim.Play("attack", 0, 0.05f);
     }
 
     public void PlayHit()
     {
-        characterAnim.Play("hit");
+        characterAnim.Play("hit", 0, 0.05f);
     }
 
     public void PlayDead()
     {
-        characterAnim.Play("dead");
+        characterAnim.Play("dead", 0, 0.05f);
     }
 
     public void PlayWin()
     {
-        characterAnim.Play("win");
+        characterAnim.Play("win", 0, 0.05f);
     }
 }

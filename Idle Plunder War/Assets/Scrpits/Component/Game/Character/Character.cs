@@ -95,7 +95,7 @@ public class Character : BaseMonoBehaviour
     /// </summary>
     public void Injured()
     {
-        characterAnim.PlayHit();
+        //characterAnim.PlayHit();
         characterRenderer.material.color = characterColor;
         characterRenderer.material.DOColor(Color.red, 0.5f).From();
     }
