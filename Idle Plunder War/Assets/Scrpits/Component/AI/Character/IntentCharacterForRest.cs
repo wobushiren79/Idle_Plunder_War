@@ -21,6 +21,7 @@ public class IntentCharacterForRest : AIBaseIntent
 
     public override void IntentEntering()
     {
+        characterAI.character.characterAnim.PlayWin();
         characterAI.character.characterAnim.PlayIdle();
         characterAI.character.characterMove.StopMove();
     }

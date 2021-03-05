@@ -91,7 +91,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         for (int i = 0; i < listMember.Count; i++)
         {
             long memberId = listMember[i];
-            CharacterHandler.Instance.CreatePlayerCharacter(memberId, positionPlayerBuild.position);
+            CharacterHandler.Instance.CreatePlayerCharacter(memberId, positionPlayerBuild.position, positionPlayerBuild.eulerAngles);
         }
     }
 

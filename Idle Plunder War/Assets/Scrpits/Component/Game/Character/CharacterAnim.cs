@@ -5,7 +5,7 @@ public class CharacterAnim : BaseMonoBehaviour
 {
     protected Animator _characterAnim;
 
-    protected Animator characterAnim
+    public Animator characterAnim
     {
         get
         {
@@ -30,5 +30,20 @@ public class CharacterAnim : BaseMonoBehaviour
     public void PlayAttack()
     {
         characterAnim.Play("attack");
+    }
+
+    public void PlayHit()
+    {
+        characterAnim.Play("hit");
+    }
+
+    public void PlayDead()
+    {
+        characterAnim.Play("dead");
+    }
+
+    public void PlayWin()
+    {
+        characterAnim.Play("win");
     }
 }

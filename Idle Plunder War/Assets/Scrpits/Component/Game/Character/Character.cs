@@ -95,6 +95,7 @@ public class Character : BaseMonoBehaviour
     /// </summary>
     public void Injured()
     {
+        characterAnim.PlayHit();
         characterRenderer.material.color = characterColor;
         characterRenderer.material.DOColor(Color.red, 0.5f).From();
     }
@@ -107,9 +108,10 @@ public class Character : BaseMonoBehaviour
         currentLife = 0;
         gameObject.layer = LayerInfo.Dead;
         characterMove.ClosePath();
-        transform
-            .DOLocalRotate(new Vector3(90, 0, 0), 1, RotateMode.LocalAxisAdd)
-            .OnComplete(() => { Destroy(gameObject); });
+        characterAnim.PlayDead();
+        //transform
+        //    .DOLocalRotate(new Vector3(90, 0, 0), 1, RotateMode.LocalAxisAdd)
+        //    .OnComplete(() => { Destroy(gameObject); });
         //characterRB.useGravity = true;
         //characterRB.freezeRotation = false;
     }

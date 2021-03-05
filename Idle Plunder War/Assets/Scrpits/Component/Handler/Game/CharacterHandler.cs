@@ -26,10 +26,10 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
     /// </summary>
     /// <param name="ids"></param>
     /// <param name="position"></param>
-    public void CreatePlayerCharacter(long id, Vector3 position)
+    public void CreatePlayerCharacter(long id, Vector3 position, Vector3 eulerAngles)
     {
         CharacterInfoBean data = manager.GetCharacterInfoById(id);
-        Character character = CreateCharacter(CharacterCampEnum.Player, data, position, Vector3.zero);
+        Character character = CreateCharacter(CharacterCampEnum.Player, data, position, eulerAngles);
 
         CharacterForPlayer characterForPlayer = character as CharacterForPlayer;
         characterForPlayer.characterAI.ChangeIntent(AIIntentEnum.CharacterPlayerIdle);
