@@ -31,7 +31,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             //创建宝藏
             CreateTreasure(data.treasure_id, Vector3.zero);
 
-            AstarPath.active.Scan();
+            AstarPath.active.ScanAsync();
             //初始化完成
             callBack?.Invoke();
         };
