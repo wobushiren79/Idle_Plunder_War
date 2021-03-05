@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 2993499645
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8e30e8bab5b025f904ee376c87a45a69
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f998d009d0cb82605a0f943265d6f5cf
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8804dc0ade39d254198e7441b397829d, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/Building/Base/BuildingBase.prefab
+Dependencies: []

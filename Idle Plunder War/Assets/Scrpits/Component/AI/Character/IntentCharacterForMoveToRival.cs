@@ -5,7 +5,7 @@ using UnityEngine;
 public class IntentCharacterForMoveToRival : AIBaseIntent
 {
     protected AICharacterEntity characterAI;
-    protected float timeForSearchInterval = 1f;
+    protected float timeForSearchInterval = 0.5f;
     protected float timeForSearch = 0;
     public IntentCharacterForMoveToRival(AICharacterEntity aiEntity) : base(AIIntentEnum.CharacterMoveToRival, aiEntity)
     {
@@ -46,25 +46,24 @@ public class IntentCharacterForMoveToRival : AIBaseIntent
         CharacterInfoBean characterInfo = characterAI.character.characterInfoData;
         CharacterCampEnum characterCamp = characterAI.character.characterCamp;
         //根据不同阵营选择不同对手
-        int layer = 0;
+        //射线检测视野范围内的敌人
+        Collider[] listEyeCollider = null;
         switch (characterCamp)
         {
             case CharacterCampEnum.Player:
-                layer = LayerInfo.Enemy;
+                listEyeCollider = RayUtil.RayToSphere(centerPosition, characterInfo.attribute_eye_range, 1 << LayerInfo.Enemy | 1 << LayerInfo.Building);
                 break;
             case CharacterCampEnum.Enemy:
-                layer = LayerInfo.Player;
+                listEyeCollider = RayUtil.RayToSphere(centerPosition, characterInfo.attribute_eye_range, 1 << LayerInfo.Player);
                 break;
         }
-        //射线检测视野范围内的敌人
-        Collider[] listEyeCollider = RayUtil.RayToSphere(centerPosition, characterInfo.attribute_eye_range, 1 << layer);
         if (CheckUtil.ArrayIsNull(listEyeCollider))
         {
             //玩家
             if (characterCamp == CharacterCampEnum.Player)
-            {           
+            {
                 //如果没有其他对手 则继续前往之前的对手
-                if(characterAI.rivalCharacter == null|| characterAI.rivalCharacter.currentLife <= 0)
+                if (characterAI.rivalCharacter == null || characterAI.rivalCharacter.currentLife <= 0)
                 {
                     //如果敌人已经死亡
                     characterAI.ChangeIntent(AIIntentEnum.CharacterPlayerIdle);
@@ -72,7 +71,7 @@ public class IntentCharacterForMoveToRival : AIBaseIntent
                 }
             }
             //敌人
-            else if(characterCamp == CharacterCampEnum.Enemy)
+            else if (characterCamp == CharacterCampEnum.Enemy)
             {
                 //如果没有其他对手 则继续前往之前的对手
                 if (characterAI.rivalCharacter == null || characterAI.rivalCharacter.currentLife <= 0)
@@ -100,10 +99,21 @@ public class IntentCharacterForMoveToRival : AIBaseIntent
                 minDistance = tempDistance;
             }
         }
-
+        //如果是敌人
         characterAI.rivalCharacter = tempColldier.GetComponent<Character>();
-        Vector3 rivalPosition = characterAI.rivalCharacter.transform.position;
-        characterAI.character.characterMove.SetDestination(rivalPosition);
+        if (characterAI.rivalCharacter != null)
+        {
+            Vector3 rivalPosition = characterAI.rivalCharacter.transform.position;
+            characterAI.character.characterMove.SetDestination(rivalPosition);
+            return;
+        }
+        //如果是建筑
+        characterAI.targetBuilding = tempColldier.GetComponentInParent<Building>();
+        if (characterAI.targetBuilding != null)
+        {
+            characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToBuilding);
+            return;
+        }
     }
 
     /// <summary>

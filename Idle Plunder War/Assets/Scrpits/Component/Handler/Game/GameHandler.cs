@@ -23,8 +23,16 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         Action<SceneInfoBean> action = (data) =>
         {
             //创建敌人
-            List<EnemyCharacterData> listEnemyData = data.GetListEnemyData();
-            CreateEnemy(listEnemyData);
+            List<EnemyCharacterData> listEnemyCharacter = data.GetListEnemyData();
+            CreateEnemy(listEnemyCharacter);
+            //创建建筑
+            List<EnemyBuildingData> listEnemyBuildings = data.GetListBuildingData();
+            CreateBuilding(listEnemyBuildings);
+            //创建宝藏
+            CreateTreasure(data.treasure_id, Vector3.zero);
+
+            AstarPath.active.ScanAsync();
+            //初始化完成
             callBack?.Invoke();
         };
         //获取场景数据
@@ -42,7 +50,15 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
     public void EndGame()
     {
         manager.gameData.SetGameStatus(GameStatusEnum.End);
+        //停止所有携程
         StopAllCoroutines();
+        //所有角色休息
+        List<Character> listAllCharacter = CharacterHandler.Instance.manager.GetAllCharacter();
+        for (int i = 0; i < listAllCharacter.Count; i++)
+        {
+            Character itemCharacter = listAllCharacter[i];
+            itemCharacter.characterAI.ChangeIntent(AIIntentEnum.CharacterRest);
+        }
     }
 
     /// <summary>
@@ -77,6 +93,26 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             long memberId = listMember[i];
             CharacterHandler.Instance.CreatePlayerCharacter(memberId, positionPlayerBuild.position);
         }
+    }
+
+    /// <summary>
+    /// 创建建筑
+    /// </summary>
+    /// <param name="listEnemyData"></param>
+    public void CreateBuilding(List<EnemyBuildingData> listBuildingData)
+    {
+        if (CheckUtil.ListIsNull(listBuildingData))
+            return;
+        for (int i = 0; i < listBuildingData.Count; i++)
+        {
+            EnemyBuildingData buildingData = listBuildingData[i];
+            BuildingHandler.Instance.CreateBuilding(buildingData.buildingId, buildingData.position.GetVector3(), buildingData.eulerAngles.GetVector3());
+        }
+    }
+    public void CreateTreasure(long treasureId, Vector3 position)
+    {
+        TreasureInfoBean treasureInfo = TreasureHandler.Instance.manager.GetTreasureInfo(treasureId);
+        TreasureHandler.Instance.CreateTreasure(treasureInfo, position);
     }
 
 

@@ -11,6 +11,10 @@ public class AICharacterForPlayerEntity : AICharacterEntity
         AddIntent(new IntentCharacterForPlayerIdle(this));
         AddIntent(new IntentCharacterForMoveToTreasure(this));
         AddIntent(new IntentCharacterForOpenTreasure(this));
+        AddIntent(new IntentCharacterForMoveToTouch(this));
+        AddIntent(new IntentCharacterForMoveToBuilding(this));
+        AddIntent(new IntentCharacterForAtkBuilding(this));
+
     }
 
 

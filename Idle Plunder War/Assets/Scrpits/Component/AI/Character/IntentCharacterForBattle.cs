@@ -34,6 +34,7 @@ public class IntentCharacterForBattle : AIBaseIntent
     {
         timeForHandle = 0;
         timeForAttack = 0;
+        characterAI.character.characterMove.StopMove();
     }
 
     public override void IntentLeaving()

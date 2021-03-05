@@ -22,8 +22,8 @@ public class Character : BaseMonoBehaviour
         characterRB = GetComponent<Rigidbody>();
         characterCollider = GetComponent<SphereCollider>();
 
-        characterRB.drag = 0f;
-        characterRB.angularDrag = 360;
+        characterRB.drag = 1f;
+        characterRB.angularDrag = 360f;
         characterRB.maxDepenetrationVelocity = 1f;
     }
 
@@ -42,13 +42,20 @@ public class Character : BaseMonoBehaviour
 
     public void RefreshData()
     {
-        GameBean gameData = GameHandler.Instance.manager.gameData;
-        LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForPower(gameData.levelForPower);
-        levelInfo.GetData(out float value1, out float value2);
-        currentMaxLife = characterInfoData.attribute_life + (int)value1;
-        currentLife = characterInfoData.attribute_life + (int)value1;
-        currentAtk = characterInfoData.attribute_atk + (int)value2;
-        characterMove.SetSpeed(characterInfoData.attribute_speed);
+        float addLife = 0;
+        float addAtk = 0;
+        //运行时查询数据
+        if (Application.isPlaying)
+        {
+            GameBean gameData = GameHandler.Instance.manager.gameData;
+            LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForPower(gameData.levelForPower);
+            levelInfo.GetData(out addLife, out addAtk);
+        }
+        currentMaxLife = characterInfoData.attribute_life + (int)addLife;
+        currentLife = characterInfoData.attribute_life + (int)addLife;
+        currentAtk = characterInfoData.attribute_atk + (int)addAtk;
+        if (characterMove != null)
+            characterMove.SetSpeed(characterInfoData.attribute_speed);
     }
 
     /// <summary>
