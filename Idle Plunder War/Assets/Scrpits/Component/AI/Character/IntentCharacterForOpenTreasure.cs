@@ -46,6 +46,7 @@ public class IntentCharacterForOpenTreasure : AIBaseIntent
         //如果宝箱已经打开
         if (treasureLife <= 0)
         {
+            TreasureHandler.Instance.manager.ClearAllTreasure();
             GameHandler.Instance.EndGame();
         }
     }
