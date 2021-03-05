@@ -10,6 +10,7 @@ public class EnemyEditor : EditorWindow
 
     protected long characterId = 0;
     protected long buildingId = 0;
+    protected long treasureId = 0;
     //protected static Object objContainer;
     [MenuItem("工具/场景创建")]
     static void CreateWindows()
@@ -26,6 +27,7 @@ public class EnemyEditor : EditorWindow
     {
         GameObject.DestroyImmediate(CharacterHandler.Instance.gameObject);
         GameObject.DestroyImmediate(BuildingHandler.Instance.gameObject);
+        GameObject.DestroyImmediate(TreasureHandler.Instance.gameObject);
     }
 
 
@@ -49,10 +51,8 @@ public class EnemyEditor : EditorWindow
         sceneInfo.id = EditorUI.GUIEditorText(sceneInfo.id);
         EditorUI.GUIText("友方角色生成间隔", 150);
         sceneInfo.character_build_interval = EditorUI.GUIEditorText(sceneInfo.character_build_interval);
-        EditorUI.GUIText("敌人活动范围半径",150);
+        EditorUI.GUIText("敌人活动范围半径", 150);
         sceneInfo.enemy_range = EditorUI.GUIEditorText(sceneInfo.enemy_range);
-        EditorUI.GUIText("宝箱ID", 150);
-        sceneInfo.treasure_id = EditorUI.GUIEditorText(sceneInfo.treasure_id);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space(50);
@@ -67,6 +67,12 @@ public class EnemyEditor : EditorWindow
         if (EditorUI.GUIButton("生成单个建筑", 150)) { CreateBuilding(buildingId, Vector3.zero, Vector3.zero); };
         EditorUI.GUIText("建筑ID");
         buildingId = EditorUI.GUIEditorText(buildingId);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+        if (EditorUI.GUIButton("生成单个宝箱", 150)) { CreateTreasure(treasureId, Vector3.zero, Vector3.zero); };
+        EditorUI.GUIText("宝箱ID");
+        treasureId = EditorUI.GUIEditorText(treasureId);
         EditorGUILayout.EndHorizontal();
     }
 
@@ -89,11 +95,17 @@ public class EnemyEditor : EditorWindow
             }
             //建筑ID
             List<EnemyBuildingData> listEnemyBuildingData = sceneInfo.GetListBuildingData();
-            BuildingHandler.Instance.manager.ClearAllCharacterInEditor();
+            BuildingHandler.Instance.manager.ClearAllBuildingInEditor();
             foreach (EnemyBuildingData itemData in listEnemyBuildingData)
             {
                 CreateBuilding(itemData.buildingId, itemData.position.GetVector3(), itemData.eulerAngles.GetVector3()); ;
             }
+
+            //建筑ID
+            EnemyTreasureData enemyTreasureData = sceneInfo.GetTreasureData();
+            TreasureHandler.Instance.manager.ClearAllTreasureInEditor();
+            if (enemyTreasureData != null && enemyTreasureData.position != null && enemyTreasureData.eulerAngles != null)
+                CreateTreasure(enemyTreasureData.treasureId, enemyTreasureData.position.GetVector3(), enemyTreasureData.eulerAngles.GetVector3()); ;
         }
     }
 
@@ -129,9 +141,25 @@ public class EnemyEditor : EditorWindow
         }
         sceneInfo.SetListBuildingData(listBuildingData);
 
+        Treasure treasure = TreasureHandler.Instance.manager.GetComponentInChildren<Treasure>();
+        EnemyTreasureData treasureData = new EnemyTreasureData();
+        treasureData.position = new Vector3Bean(treasure.transform.position);
+        treasureData.eulerAngles = new Vector3Bean(treasure.transform.eulerAngles);
+        treasureData.treasureId = treasure.treasureInfo.id;
+        sceneInfo.SetTreasureData(treasureData);
+
         sceneInfoService.UpdateData(sceneInfo);
     }
-
+    /// <summary>
+    /// 创建角色
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="position"></param>
+    protected void CreateTreasure(long id, Vector3 position, Vector3 eulerAngles)
+    {
+        TreasureHandler.Instance.manager.InitAllTreasureInfo();
+        TreasureHandler.Instance.CreateTreasure(id, position, eulerAngles);
+    }
     /// <summary>
     /// 创建角色
     /// </summary>

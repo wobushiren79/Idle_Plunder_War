@@ -29,7 +29,8 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             List<EnemyBuildingData> listEnemyBuildings = data.GetListBuildingData();
             CreateBuilding(listEnemyBuildings);
             //创建宝藏
-            CreateTreasure(data.treasure_id, Vector3.zero);
+            EnemyTreasureData treasureData = data.GetTreasureData();
+            CreateTreasure(treasureData.treasureId, treasureData.position.GetVector3(), treasureData.eulerAngles.GetVector3());
 
             AstarPath.active.ScanAsync();
             //初始化完成
@@ -109,10 +110,10 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             BuildingHandler.Instance.CreateBuilding(buildingData.buildingId, buildingData.position.GetVector3(), buildingData.eulerAngles.GetVector3());
         }
     }
-    public void CreateTreasure(long treasureId, Vector3 position)
+    public void CreateTreasure(long treasureId, Vector3 position, Vector3 eulerAngles)
     {
         TreasureInfoBean treasureInfo = TreasureHandler.Instance.manager.GetTreasureInfo(treasureId);
-        TreasureHandler.Instance.CreateTreasure(treasureInfo, position);
+        TreasureHandler.Instance.CreateTreasure(treasureInfo, position, eulerAngles);
     }
 
 

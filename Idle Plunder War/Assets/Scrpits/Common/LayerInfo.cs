@@ -9,4 +9,5 @@ public class LayerInfo
     public static int Enemy = LayerMask.NameToLayer("Enemy");
     public static int Dead = LayerMask.NameToLayer("Dead");
     public static int Building = LayerMask.NameToLayer("Building");
+    public static int Treasure = LayerMask.NameToLayer("Treasure");
 }

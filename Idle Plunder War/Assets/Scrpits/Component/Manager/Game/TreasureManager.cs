@@ -7,7 +7,7 @@ public class TreasureManager : BaseManager, ITreasureInfoView
 {
     protected TreasureInfoController controllerForTreasureInfo;
     //宝藏列表
-    protected Treasure treasure; 
+    protected Treasure treasure;
     //宝藏模型数据
     public Dictionary<string, GameObject> dicModel = new Dictionary<string, GameObject>();
     //宝藏信息数据
@@ -86,6 +86,19 @@ public class TreasureManager : BaseManager, ITreasureInfoView
     {
         GameObject objBaseModel = GetModel(dicModel, "treasure/treasure", modelName, "Assets/Prefabs/Treasure/" + modelName + ".prefab");
         return objBaseModel;
+    }
+    public void ClearAllTreasure()
+    {
+        if (treasure != null)
+            Destroy(treasure.gameObject);
+        treasure = null;
+    }
+
+    public void ClearAllTreasureInEditor()
+    {
+        if(treasure!=null)
+            DestroyImmediate(treasure.gameObject);
+        treasure = null;
     }
 
     #region 数据回调

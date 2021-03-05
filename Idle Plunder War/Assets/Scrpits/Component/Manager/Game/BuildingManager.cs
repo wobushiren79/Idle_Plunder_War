@@ -83,16 +83,13 @@ public class BuildingManager : BaseManager,IBuildingInfoView
         return objBaseModel;
     }
 
-    /// <summary>
-    /// 清除所有角色
-    /// </summary>
-    public void ClearAllCharacter()
+    public void ClearAllBuilding()
     {
         CptUtil.RemoveChildsByActive(gameObject);
         listBuilding.Clear();
     }
 
-    public void ClearAllCharacterInEditor()
+    public void ClearAllBuildingInEditor()
     {
         CptUtil.RemoveChildsByActiveInEditor(gameObject);
         listBuilding.Clear();

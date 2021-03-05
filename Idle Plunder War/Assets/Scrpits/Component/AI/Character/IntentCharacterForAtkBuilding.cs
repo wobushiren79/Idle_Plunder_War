@@ -43,6 +43,9 @@ public class IntentCharacterForAtkBuilding : AIBaseIntent
             return;
         timeForAttack = characterAI.character.characterInfoData.attribute_atk_interval;
 
+        //面朝对手
+        characterAI.character.transform.LookAt(characterAI.rivalCharacter.transform.position);
+
         int damage = characterAI.character.currentAtk;
 
         int enemyLife;
