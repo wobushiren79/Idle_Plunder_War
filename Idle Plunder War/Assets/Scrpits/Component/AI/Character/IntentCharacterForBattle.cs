@@ -74,7 +74,7 @@ public class IntentCharacterForBattle : AIBaseIntent
     {
         timeForAttack -= Time.deltaTime;
         if (timeForAttack > 0)
-            return;
+            return;       
         timeForAttack = characterAI.character.characterInfoData.attribute_atk_interval;
         characterAI.character.characterAnim.PlayAttack();
 
@@ -86,7 +86,10 @@ public class IntentCharacterForBattle : AIBaseIntent
             enemyLife = 0;
         }
         else
-        {
+        {           
+            //面朝对手
+            characterAI.character.transform.LookAt(characterAI.rivalCharacter.transform.position);
+
             enemyLife = characterAI.rivalCharacter.characterAI.UnderAttack(damage);
         }
 

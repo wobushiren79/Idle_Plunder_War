@@ -43,8 +43,7 @@ public class IntentCharacterForAtkBuilding : AIBaseIntent
             return;
         timeForAttack = characterAI.character.characterInfoData.attribute_atk_interval;
 
-        //面朝对手
-        characterAI.character.transform.LookAt(characterAI.rivalCharacter.transform.position);
+
 
         int damage = characterAI.character.currentAtk;
 
@@ -54,9 +53,12 @@ public class IntentCharacterForAtkBuilding : AIBaseIntent
             enemyLife = 0;
         }
         else
-        {
+        {           
+            //面朝对手
+            characterAI.character.transform.LookAt(characterAI.targetBuilding.transform.position);
+
             enemyLife = characterAI.targetBuilding.UnderAttack(damage);
-        }
+        }        
         characterAI.character.characterAnim.PlayAttack();
         //如果建筑已经死亡
         if (enemyLife <= 0)
