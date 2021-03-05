@@ -28,6 +28,7 @@ public class IntentCharacterForMoveToBuilding : AIBaseIntent
 
     public override void IntentEntering()
     {
+        characterAI.character.characterAnim.PlayWalk();
         Vector3 buildingPosition = characterAI.targetBuilding.transform.position;
         characterAI.character.characterMove.SetDestination(buildingPosition);
     }

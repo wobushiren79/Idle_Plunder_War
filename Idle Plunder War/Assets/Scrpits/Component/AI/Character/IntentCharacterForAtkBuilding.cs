@@ -23,6 +23,7 @@ public class IntentCharacterForAtkBuilding : AIBaseIntent
 
     public override void IntentEntering()
     {
+        characterAI.character.characterAnim.PlayIdle();
         timeForAttack = 0;
         characterAI.character.characterMove.StopMove();
     }
@@ -53,6 +54,7 @@ public class IntentCharacterForAtkBuilding : AIBaseIntent
         {
             enemyLife = characterAI.targetBuilding.UnderAttack(damage);
         }
+        characterAI.character.characterAnim.PlayAttack();
         //如果建筑已经死亡
         if (enemyLife <= 0)
         {

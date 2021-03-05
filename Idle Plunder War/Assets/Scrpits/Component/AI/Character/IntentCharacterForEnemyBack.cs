@@ -32,6 +32,7 @@ public class IntentCharacterForEnemyBack : AIBaseIntent
     public override void IntentEntering()
     {
         timeForSearch = 0;
+        characterAI.character.characterAnim.PlayWalk();
         CharacterForEnemy characterForEnemy = characterAI.character as CharacterForEnemy;
         Vector3 startPosition = characterForEnemy.positionForStart;
         characterAI.character.characterMove.SetDestination(startPosition);

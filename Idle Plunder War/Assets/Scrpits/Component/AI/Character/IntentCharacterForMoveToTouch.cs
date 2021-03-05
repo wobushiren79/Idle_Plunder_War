@@ -21,6 +21,7 @@ public class IntentCharacterForMoveToTouch : AIBaseIntent
 
     public override void IntentEntering()
     {
+        characterAI.character.characterAnim.PlayWalk();
         Vector3 moveTarget = characterAI.moveTarget+ new Vector3(Random.Range(-1,1),0, Random.Range(-1, 1));
         characterAI.moveTarget = moveTarget;
         characterAI.character.characterMove.SetDestination(characterAI.moveTarget);

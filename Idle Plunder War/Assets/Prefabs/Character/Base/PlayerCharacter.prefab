@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8574739532367588723}
   - component: {fileID: 3783203207349642758}
   - component: {fileID: 5255119090991136663}
+  - component: {fileID: 620087479031786253}
   m_Layer: 7
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -107,6 +108,7 @@ MonoBehaviour:
   currentLife: 0
   currentAtk: 0
   characterMove: {fileID: 0}
+  characterAnim: {fileID: 0}
 --- !u!54 &4844575561509035893
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -134,8 +136,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!114 &3783203207349642758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,8 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  radius: 0.5
-  height: 1
+  radius: 0.15
+  height: 0.5
   repathRate: 0.5
   canSearch: 0
   canMove: 1
@@ -194,3 +196,15 @@ MonoBehaviour:
   bezierTangentLength: 0.4
   offset: 0.2
   factor: 0.1
+--- !u!114 &620087479031786253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205056673207494260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d426c47c241011f488e67bf24be33595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
