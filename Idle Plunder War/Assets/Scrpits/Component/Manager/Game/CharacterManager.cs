@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharacterManager : BaseManager, ICharacterInfoView
 {
-    public CharacterInfoController characterInfoController;
+    public CharacterInfoController controllerForCharacterInfo;
     //角色模型数据
     public Dictionary<string, GameObject> dicModel = new Dictionary<string, GameObject>();
     //角色信息数据
@@ -14,20 +14,20 @@ public class CharacterManager : BaseManager, ICharacterInfoView
     public List<Character> listPlayerCharacter = new List<Character>();
     public List<Character> listEnemyCharacter = new List<Character>();
 
+
     private void Awake()
     {
         InitAllCharacterInfo();
     }
-
 
     /// <summary>
     /// 初始化所有数据
     /// </summary>
     public void InitAllCharacterInfo()
     {
-        if (characterInfoController == null)
+        if (controllerForCharacterInfo == null)
         {
-            characterInfoController = new CharacterInfoController(this, this);
+            controllerForCharacterInfo = new CharacterInfoController(this, this);
         }
         Action<List<CharacterInfoBean>> callBack = (listCharacter) =>
         {
@@ -38,9 +38,22 @@ public class CharacterManager : BaseManager, ICharacterInfoView
                 dicCharacterInfo.Add(itemData.id, itemData);
             }
         };
-        characterInfoController.GetAllCharacterInfoData(callBack);
+        controllerForCharacterInfo.GetAllCharacterInfoData(callBack);
     }
 
+    /// <summary>
+    /// 获取所有角色
+    /// </summary>
+    /// <returns></returns>
+    public List<Character> GetAllCharacter()
+    {
+        List<Character> listData = new List<Character>();
+        if(!CheckUtil.ListIsNull(listPlayerCharacter))
+            listData.AddRange(listPlayerCharacter);
+        if (!CheckUtil.ListIsNull(listEnemyCharacter))
+            listData.AddRange(listEnemyCharacter);
+        return listData;
+    }
 
     /// <summary>
     /// 分配对手

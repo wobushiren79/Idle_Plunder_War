@@ -16,6 +16,18 @@ public class RayUtil
     }
 
     /// <summary>
+    /// 屏幕点击射线检测
+    /// </summary>
+    /// <param name="maxDistance"></param>
+    /// <param name="layer"></param>
+    /// <param name="hitInfo"></param>
+    public static void RayToScreenPoint(float maxDistance,int layer, out RaycastHit hitInfo)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast( ray, out  hitInfo, maxDistance, layer);
+    }
+
+    /// <summary>
     /// 射线-球体
     /// </summary>
     /// <param name="centerPosition"></param>

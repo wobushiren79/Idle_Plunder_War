@@ -16,11 +16,14 @@ public class IntentCharacterForMoveToTreasure : AIBaseIntent
 
     public override void IntentActUpdate()
     {
-      
+        HandleForArrive();
     }
 
     public override void IntentEntering()
     {
+        Treasure treasure = TreasureHandler.Instance.manager.GetTreasure();
+        characterAI.targetTreasure = treasure;
+        characterAI.character.characterMove.SetDestination(treasure.transform.position);
     }
 
     public override void IntentLeaving()
@@ -33,7 +36,7 @@ public class IntentCharacterForMoveToTreasure : AIBaseIntent
         //检测是否到达目的地
         if (characterAI.character.characterMove.IsAutoMoveStopForEndPath())
         {
-
+            characterAI.ChangeIntent(AIIntentEnum.CharacterOpenTreasure);
         }
     }
 }

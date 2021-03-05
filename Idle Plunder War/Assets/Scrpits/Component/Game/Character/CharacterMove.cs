@@ -28,6 +28,7 @@ public class CharacterMove : BaseMonoBehaviour
     public void SetDestination(Vector3 targetPosition)
     {
         StopMove();
+        aiPath.isStopped = false;
         aiPath.maxAcceleration = float.MaxValue;
         aiPath.destination = targetPosition;
         aiPath.SearchPath();
@@ -42,6 +43,7 @@ public class CharacterMove : BaseMonoBehaviour
     /// </summary>
     public void StopMove()
     {
+        aiPath.isStopped = true;
         aiPath.canMove = false;
     }
 

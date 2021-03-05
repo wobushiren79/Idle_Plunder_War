@@ -1,6 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using System;
 
+[Serializable]
 public abstract class AIBaseIntent
 {
     public AIBaseEntity aiEntity;

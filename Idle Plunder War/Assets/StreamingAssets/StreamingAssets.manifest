@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 610235644
+CRC: 558127598
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -10,4 +10,16 @@ AssetBundleManifest:
       Dependencies: {}
     Info_2:
       Name: ui/ui
+      Dependencies: {}
+    Info_3:
+      Name: treasure/base
+      Dependencies: {}
+    Info_4:
+      Name: treasure/treasure
+      Dependencies: {}
+    Info_5:
+      Name: building/building
+      Dependencies: {}
+    Info_6:
+      Name: building/base
       Dependencies: {}
