@@ -27,6 +27,7 @@ public class IntentCharacterForEnemyIdle : AIBaseIntent
 
     public override void IntentEntering()
     {
+        characterAI.character.characterAnim.PlayIdle();
         timeForSearch = 0;
     }
 

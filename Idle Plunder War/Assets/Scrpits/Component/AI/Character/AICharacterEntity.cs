@@ -38,6 +38,8 @@ public class AICharacterEntity : AIBaseEntity
                 gameData.AddGold((long)(character.characterInfoData.price * levelData));
             }
         }
+        //受伤
+        character.Injured();
         return life;
     }
 }

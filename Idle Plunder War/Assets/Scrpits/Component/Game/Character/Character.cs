@@ -13,12 +13,28 @@ public class Character : BaseMonoBehaviour
     public int currentAtk;
 
     public CharacterMove characterMove;
+    public CharacterAnim characterAnim;
+
     protected Rigidbody characterRB;
     protected SphereCollider characterCollider;
+    protected Renderer _characterRenderer;
+    protected Renderer characterRenderer
+    {
+        get
+        {
+            if (_characterRenderer == null)
+            {
+                _characterRenderer = GetComponentInChildren<Renderer>();
+            }
+            return _characterRenderer;
+        }
+    }
+
 
     public virtual void Awake()
     {
         characterMove = GetComponent<CharacterMove>();
+        characterAnim= GetComponent<CharacterAnim>();
         characterRB = GetComponent<Rigidbody>();
         characterCollider = GetComponent<SphereCollider>();
 
@@ -73,6 +89,15 @@ public class Character : BaseMonoBehaviour
     }
 
     /// <summary>
+    ///  受伤
+    /// </summary>
+    public void Injured()
+    {
+        characterRenderer.material.color = Color.white;
+        characterRenderer.material.DOColor(Color.red, 0.5f).From();
+    }
+
+    /// <summary>
     /// 设置角色死亡
     /// </summary>
     public void SetCharacterDead()
@@ -86,7 +111,6 @@ public class Character : BaseMonoBehaviour
         //characterRB.useGravity = true;
         //characterRB.freezeRotation = false;
     }
-
 
 
 }

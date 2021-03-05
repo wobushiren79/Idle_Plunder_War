@@ -20,6 +20,7 @@ public class IntentCharacterForPlayerIdle : AIBaseIntent
     public override void IntentEntering()
     {
         AICharacterEntity aiCharacter = aiEntity as AICharacterEntity;
+        characterAI.character.characterAnim.PlayIdle();
         //分配对手
         aiCharacter.rivalCharacter = CharacterHandler.Instance.manager.DistributeRival(characterAI.character);
         if (aiCharacter.rivalCharacter != null)

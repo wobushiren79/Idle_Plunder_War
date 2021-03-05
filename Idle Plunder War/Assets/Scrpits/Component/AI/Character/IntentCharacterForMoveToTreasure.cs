@@ -21,6 +21,7 @@ public class IntentCharacterForMoveToTreasure : AIBaseIntent
 
     public override void IntentEntering()
     {
+        characterAI.character.characterAnim.PlayWalk();
         Treasure treasure = TreasureHandler.Instance.manager.GetTreasure();
         characterAI.targetTreasure = treasure;
         characterAI.character.characterMove.SetDestination(treasure.transform.position);

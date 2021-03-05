@@ -42,6 +42,7 @@ public class IntentCharacterForOpenTreasure : AIBaseIntent
 
         int damage = characterAI.character.currentAtk;
         int treasureLife = characterAI.targetTreasure.ChangeLife(-damage);
+        characterAI.character.characterAnim.PlayAttack();
         //如果宝箱已经打开
         if (treasureLife <= 0)
         {

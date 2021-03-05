@@ -35,6 +35,7 @@ public class IntentCharacterForBattle : AIBaseIntent
         timeForHandle = 0;
         timeForAttack = 0;
         characterAI.character.characterMove.StopMove();
+        characterAI.character.characterAnim.PlayIdle();
     }
 
     public override void IntentLeaving()
@@ -87,6 +88,7 @@ public class IntentCharacterForBattle : AIBaseIntent
         {
             enemyLife = characterAI.rivalCharacter.characterAI.UnderAttack(damage);
         }
+        characterAI.character.characterAnim.PlayAttack();
         //如果角色已经死亡
         if (enemyLife <= 0)
         {

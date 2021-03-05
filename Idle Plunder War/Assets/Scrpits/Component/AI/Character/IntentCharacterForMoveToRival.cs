@@ -29,6 +29,7 @@ public class IntentCharacterForMoveToRival : AIBaseIntent
 
     public override void IntentEntering()
     {
+        characterAI.character.characterAnim.PlayWalk();
         timeForSearch = 0;
     }
 
