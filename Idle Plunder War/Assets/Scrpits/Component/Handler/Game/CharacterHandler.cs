@@ -29,7 +29,7 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
     public void CreatePlayerCharacter(long id, Vector3 position, Vector3 eulerAngles)
     {
         CharacterInfoBean data = manager.GetCharacterInfoById(id);
-        Character character = CreateCharacter(CharacterCampEnum.Player, data, position, eulerAngles);
+        Character character = CreateCharacter(CampEnum.Player, data, position, eulerAngles);
 
         CharacterForPlayer characterForPlayer = character as CharacterForPlayer;
         characterForPlayer.characterAI.ChangeIntent(AIIntentEnum.CharacterPlayerIdle);
@@ -43,7 +43,7 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
     public Character CreateEnemyCharacter(long id, Vector3 position, Vector3 eulerAngles)
     {
         CharacterInfoBean data = manager.GetCharacterInfoById(id);
-        Character character = CreateCharacter(CharacterCampEnum.Enemy, data, position, eulerAngles);
+        Character character = CreateCharacter(CampEnum.Enemy, data, position, eulerAngles);
         return character;
     }
 
@@ -53,7 +53,7 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
     /// <param name="characterCamp"></param>
     /// <param name="characterInfo"></param>
     /// <param name="position"></param>
-    protected Character CreateCharacter(CharacterCampEnum characterCamp, CharacterInfoBean characterInfo, Vector3 position, Vector3 eulerAngles)
+    protected Character CreateCharacter(CampEnum characterCamp, CharacterInfoBean characterInfo, Vector3 position, Vector3 eulerAngles)
     {
         //获取模型
         GameObject objBaseModel = manager.GetCharacterBaseModel(characterCamp);

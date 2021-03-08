@@ -6,7 +6,7 @@ public class Character : BaseMonoBehaviour
 {
     public CharacterInfoBean characterInfoData;
     public AICharacterEntity characterAI;
-    public CharacterCampEnum characterCamp;
+    public CampEnum characterCamp;
 
     public int currentMaxLife;
     public int currentLife;
@@ -14,6 +14,22 @@ public class Character : BaseMonoBehaviour
 
     public CharacterMove characterMove;
     public CharacterAnim characterAnim;
+
+    /// <summary>
+    /// 攻击点
+    /// </summary>
+    protected Transform _atkPosition;
+    public Transform atkPosition
+    {
+        get
+        {
+            if (_atkPosition == null)
+            {
+                _atkPosition = CptUtil.GetCptInChildrenByName<Transform>(gameObject, "AtkPosition");
+            }
+            return _atkPosition;
+        }
+    }
 
     protected Rigidbody characterRB;
     protected SphereCollider characterCollider;
@@ -50,7 +66,7 @@ public class Character : BaseMonoBehaviour
     /// </summary>
     /// <param name="characterCamp"></param>
     /// <param name="characterInfoData"></param>
-    public virtual void SetData(CharacterCampEnum characterCamp, CharacterInfoBean characterInfoData)
+    public virtual void SetData(CampEnum characterCamp, CharacterInfoBean characterInfoData)
     {
         this.characterCamp = characterCamp;
         this.characterInfoData = characterInfoData;

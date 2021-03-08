@@ -76,11 +76,8 @@ public class IntentCharacterForBattle : AIBaseIntent
         if (timeForAttack > 0)
             return;       
         timeForAttack = characterAI.character.characterInfoData.attribute_atk_interval;
-        characterAI.character.characterAnim.PlayAttack();
 
-        int damage = characterAI.character.currentAtk;
-
-        int enemyLife;
+        int enemyLife = 0;
         if (characterAI.rivalCharacter == null || characterAI.rivalCharacter.currentLife <= 0)
         {
             enemyLife = 0;
@@ -90,18 +87,21 @@ public class IntentCharacterForBattle : AIBaseIntent
             //面朝对手
             characterAI.character.transform.LookAt(characterAI.rivalCharacter.transform.position);
 
-            enemyLife = characterAI.rivalCharacter.characterAI.UnderAttack(damage);
+            AtkTypeHandler.Instance.AtkTarget(characterAI.character.characterInfoData.GetAtkType(), characterAI.character, characterAI.rivalCharacter);
+
+            enemyLife = characterAI.rivalCharacter.currentLife;
         }
+
 
         //如果角色已经死亡
         if (enemyLife <= 0)
         {
             switch (characterAI.character.characterCamp)
             {
-                case CharacterCampEnum.Player:
+                case CampEnum.Player:
                     characterAI.ChangeIntent(AIIntentEnum.CharacterPlayerIdle);
                     break;
-                case CharacterCampEnum.Enemy:
+                case CampEnum.Enemy:
                     characterAI.ChangeIntent(AIIntentEnum.CharacterEnemyBack);
                     break;
             }

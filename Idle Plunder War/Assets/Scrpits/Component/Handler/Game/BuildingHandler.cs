@@ -13,7 +13,9 @@ public class BuildingHandler : BaseHandler<BuildingHandler, BuildingManager>
     public Building CreateBuilding(long buildingId, Vector3 position, Vector3 eulerAngles)
     {
         BuildingInfoBean buildingInfo = manager.GetBuildingInfo(buildingId);
-        return CreateBuilding(buildingInfo, position,eulerAngles);
+        Building building = CreateBuilding(buildingInfo, position, eulerAngles);
+        building.buildingAI.ChangeIntent(AIIntentEnum.BuildingIdle);
+        return building;
     }
 
     /// <summary>

@@ -1,18 +1,19 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-public class IntentCharacterForEnemyIdle : AIBaseIntent
+public class IntentBuildingForIdle : AIBaseIntent
 {
-    protected AICharacterForEnemyEntity characterAI;
+    protected AIBuildingEntity buildingAI;
     protected float timeForSearchInterval = 1f;
     protected float timeForSearch = 0;
-    public IntentCharacterForEnemyIdle(AICharacterForEnemyEntity aiEntity) : base(AIIntentEnum.CharacterEnemyIdle, aiEntity)
+    public IntentBuildingForIdle(AIBuildingEntity aiEntity) : base(AIIntentEnum.BuildingIdle, aiEntity)
     {
-        this.characterAI = aiEntity;
+        this.buildingAI = aiEntity;
     }
 
     public override void IntentActFixUpdate()
     {
+
     }
 
     public override void IntentActUpdate()
@@ -27,12 +28,12 @@ public class IntentCharacterForEnemyIdle : AIBaseIntent
 
     public override void IntentEntering()
     {
-        characterAI.character.characterAnim.PlayIdle();
         timeForSearch = 0;
     }
 
     public override void IntentLeaving()
     {
+
     }
 
     /// <summary>
@@ -40,12 +41,12 @@ public class IntentCharacterForEnemyIdle : AIBaseIntent
     /// </summary>
     public void HandleForSearchRival()
     {
-        Vector3 centerPosition = characterAI.transform.position;
-        CharacterInfoBean characterInfo = characterAI.character.characterInfoData;
-        CampEnum characterCamp = characterAI.character.characterCamp;
+        Vector3 centerPosition = buildingAI.transform.position;
+        BuildingInfoBean buildingInfo = buildingAI.building.buildingInfoData;
+        CampEnum camp = buildingAI.building.camp;
         //根据不同阵营选择不同对手
         int layer = 0;
-        switch (characterCamp)
+        switch (camp)
         {
             case CampEnum.Player:
                 layer = LayerInfo.Enemy;
@@ -55,18 +56,18 @@ public class IntentCharacterForEnemyIdle : AIBaseIntent
                 break;
         }
         //射线检测视野范围内的敌人
-        Collider[] listEyeCollider = RayUtil.RayToSphere(centerPosition, characterInfo.attribute_eye_range, 1 << layer);
+        Collider[] listEyeCollider = RayUtil.RayToSphere(centerPosition, buildingInfo.attribute_atk_range, 1 << layer);
         if (CheckUtil.ArrayIsNull(listEyeCollider))
         {
             return;
         }
-        //如果射线内又其他敌人 则检测最近的一个敌人前往
+        //如果射线内又其他敌人 则检测最近的一个敌人
         float minDistance = float.MaxValue;
         Collider tempColldier = null;
         for (int i = 0; i < listEyeCollider.Length; i++)
         {
             Collider itemCollider = listEyeCollider[i];
-            float tempDistance = Vector3.Distance(itemCollider.transform.position, characterAI.transform.position);
+            float tempDistance = Vector3.Distance(itemCollider.transform.position, buildingAI.transform.position);
             if (tempDistance < minDistance)
             {
                 tempColldier = itemCollider;
@@ -74,7 +75,7 @@ public class IntentCharacterForEnemyIdle : AIBaseIntent
             }
         }
         //发现对手 前往对手
-        characterAI.rivalCharacter = tempColldier.GetComponent<Character>();
-        characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToRival);
+        buildingAI.rivalCharacter = tempColldier.GetComponent<Character>();
+        buildingAI.ChangeIntent(AIIntentEnum.BuildingAtk);
     }
 }

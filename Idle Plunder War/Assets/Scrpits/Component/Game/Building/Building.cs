@@ -5,10 +5,34 @@ using UnityEngine;
 public class Building : BaseMonoBehaviour
 {
     public BuildingInfoBean buildingInfoData;
-
+    public AIBuildingEntity buildingAI;
     public int currentLife;
     public int currentMaxLife;
     public int currentAtk;
+    public CampEnum camp;
+
+    /// <summary>
+    /// 攻击点
+    /// </summary>
+    protected Transform _atkPosition;
+    public Transform atkPosition
+    {
+        get
+        {
+            if (_atkPosition == null)
+            {
+                _atkPosition = CptUtil.GetCptInChildrenByName<Transform>(gameObject, "AtkPosition");
+            }
+            return _atkPosition;
+        }
+    }
+
+
+    private void Awake()
+    {
+        buildingAI = CptUtil.AddCpt<AIBuildingEntity>(gameObject);
+        buildingAI.InitData(this);
+    }
 
     public void SetData(BuildingInfoBean buildingInfoData)
     {
@@ -26,11 +50,14 @@ public class Building : BaseMonoBehaviour
         return currentLife;
     }
 
+
     /// <summary>
-    /// 收到攻击
+    /// 收到攻击 
     /// </summary>
+    /// <param name="objAtk"></param>
     /// <param name="damage"></param>
-    public int UnderAttack(int damage)
+    /// <returns></returns>
+    public int UnderAttack(GameObject objAtk, int damage)
     {
         int life = ChangeLife(-damage);
         if (life <= 0)

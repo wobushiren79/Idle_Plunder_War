@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-public enum CharacterCampEnum
+public enum CampEnum
 {
     Player,
     Enemy,
