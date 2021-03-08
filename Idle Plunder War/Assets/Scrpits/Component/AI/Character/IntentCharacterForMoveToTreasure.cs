@@ -4,7 +4,8 @@ using UnityEngine;
 public class IntentCharacterForMoveToTreasure : AIBaseIntent
 {
     protected AICharacterEntity characterAI;
-
+    protected float timeForSearchInterval = 0.2f;
+    protected float timeForSearch = 0;
     public IntentCharacterForMoveToTreasure(AICharacterEntity aiEntity) : base(AIIntentEnum.CharacterMoveToTreasure, aiEntity)
     {
         this.characterAI = aiEntity;
@@ -16,6 +17,12 @@ public class IntentCharacterForMoveToTreasure : AIBaseIntent
 
     public override void IntentActUpdate()
     {
+        timeForSearch -= Time.deltaTime;
+        if (timeForSearch <= 0)
+        {
+            HandleForSearchBattle();
+            timeForSearch = timeForSearchInterval;
+        }
         HandleForArrive();
     }
 
@@ -36,6 +43,18 @@ public class IntentCharacterForMoveToTreasure : AIBaseIntent
     {
         //检测是否到达目的地
         if (characterAI.character.characterMove.IsAutoMoveStopForEndPath())
+        {
+            characterAI.ChangeIntent(AIIntentEnum.CharacterOpenTreasure);
+        }
+    }
+
+    /// <summary>
+    /// 处理-是否进入战斗范围
+    /// </summary>
+    protected void HandleForSearchBattle()
+    {
+        float distance = Vector3.Distance(characterAI.character.transform.position, characterAI.targetTreasure.transform.position);
+        if( distance <= characterAI.character.characterInfoData.attribute_atk_range)
         {
             characterAI.ChangeIntent(AIIntentEnum.CharacterOpenTreasure);
         }

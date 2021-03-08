@@ -2,34 +2,13 @@
 using UnityEditor;
 using UnityEngine;
 
-public class Character : BaseMonoBehaviour
+public class Character : GameBaseItem
 {
     public CharacterInfoBean characterInfoData;
     public AICharacterEntity characterAI;
-    public CampEnum characterCamp;
-
-    public int currentMaxLife;
-    public int currentLife;
-    public int currentAtk;
 
     public CharacterMove characterMove;
     public CharacterAnim characterAnim;
-
-    /// <summary>
-    /// 攻击点
-    /// </summary>
-    protected Transform _atkPosition;
-    public Transform atkPosition
-    {
-        get
-        {
-            if (_atkPosition == null)
-            {
-                _atkPosition = CptUtil.GetCptInChildrenByName<Transform>(gameObject, "AtkPosition");
-            }
-            return _atkPosition;
-        }
-    }
 
     protected Rigidbody characterRB;
     protected SphereCollider characterCollider;
@@ -68,7 +47,7 @@ public class Character : BaseMonoBehaviour
     /// <param name="characterInfoData"></param>
     public virtual void SetData(CampEnum characterCamp, CharacterInfoBean characterInfoData)
     {
-        this.characterCamp = characterCamp;
+        this.camp = characterCamp;
         this.characterInfoData = characterInfoData;
 
         RefreshData();
@@ -93,27 +72,53 @@ public class Character : BaseMonoBehaviour
     }
 
     /// <summary>
-    /// 改变生命值
+    /// 收到攻击 
     /// </summary>
-    /// <param name="addLife"></param>
-    public int ChangeLife(int addLife)
+    /// <param name="objAtk"></param>
+    /// <param name="damage"></param>
+    /// <returns></returns>
+    public override int UnderAttack(GameBaseItem atk, int damage)
     {
-        currentLife += addLife;
-        if (currentLife < 0)
+        int life = base.UnderAttack(atk, damage);
+        if (life <= 0)
         {
-            currentLife = 0;
+            //如果是敌人 增加金币
+            if (atk.camp == CampEnum.Enemy)
+            {
+                GameBean gameData = GameHandler.Instance.manager.gameData;
+                LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForPrice(gameData.levelForPrice);
+                levelInfo.GetData(out float levelData);
+                gameData.AddGold((long)(characterInfoData.price * levelData));
+            }
+            characterAI.ChangeIntent(AIIntentEnum.CharacterDead);
+            //死亡
+            Destroy(gameObject);
         }
-        return currentLife;
-    }
+        else
+        {
+            if (characterAI.currentIntent.aiIntent == AIIntentEnum.CharacterPlayerIdle
+                || characterAI.currentIntent.aiIntent == AIIntentEnum.CharacterEnemyIdle
+                || characterAI.currentIntent.aiIntent == AIIntentEnum.CharacterEnemyBack)
+            {
+                //如果是人
+                if (atk is Character)
+                {
+                    characterAI.rivalCharacter = atk as Character;
+                    characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToRival);
+                }
+                else if (atk is Building)
+                {
+                    //如果是建筑
+                    characterAI.targetBuilding = atk as Building;
+                    characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToBuilding);
+                }
+            }
+        }
 
-    /// <summary>
-    ///  受伤
-    /// </summary>
-    public void Injured()
-    {
         //characterAnim.PlayHit();
         characterRenderer.material.color = characterColor;
         characterRenderer.material.DOColor(Color.red, 0.5f).From();
+        return life;
     }
 
     /// <summary>

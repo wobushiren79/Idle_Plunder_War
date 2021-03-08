@@ -45,7 +45,7 @@ public class IntentCharacterForMoveToRival : AIBaseIntent
     {
         Vector3 centerPosition = characterAI.transform.position;
         CharacterInfoBean characterInfo = characterAI.character.characterInfoData;
-        CampEnum characterCamp = characterAI.character.characterCamp;
+        CampEnum characterCamp = characterAI.character.camp;
         //根据不同阵营选择不同对手
         //射线检测视野范围内的敌人
         Collider[] listEyeCollider = null;
@@ -124,7 +124,7 @@ public class IntentCharacterForMoveToRival : AIBaseIntent
     {
         Vector3 centerPosition = characterAI.transform.position;
         CharacterInfoBean characterInfo = characterAI.character.characterInfoData;
-        CampEnum characterCamp = characterAI.character.characterCamp;
+        CampEnum characterCamp = characterAI.character.camp;
         //根据不同阵营选择不同对手
         int layer = 0;
         switch (characterCamp)

@@ -48,7 +48,7 @@ public class IntentCharacterForEnemyBack : AIBaseIntent
     {
         Vector3 centerPosition = characterAI.transform.position;
         CharacterInfoBean characterInfo = characterAI.character.characterInfoData;
-        CampEnum characterCamp = characterAI.character.characterCamp;
+        CampEnum characterCamp = characterAI.character.camp;
         //根据不同阵营选择不同对手
         int layer = 0;
         switch (characterCamp)

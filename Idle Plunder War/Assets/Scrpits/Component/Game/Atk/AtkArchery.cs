@@ -29,7 +29,7 @@ public class AtkArchery : BaseMonoBehaviour
     //阵营
     public CampEnum camp;
     //开火目标
-    public GameObject objFire;
+    public GameBaseItem objFire;
 
     public void Update()
     {
@@ -52,27 +52,20 @@ public class AtkArchery : BaseMonoBehaviour
     {
         if (!isFire)
             return;
-        Character character = collision.transform.GetComponent<Character>();
-        if (character != null)
+        GameBaseItem baseItem ;
+        if (collision.gameObject.layer == LayerInfo.Building
+            || collision.gameObject.layer == LayerInfo.Treasure)
         {
-            if(character.characterCamp == camp)
-            {
-                //射中友军
-                return;
-            }
-            else
-            {
-                isFire = false;
-                transform.SetParent(collision.transform);
-                character.characterAI.UnderAttack(objFire,damage);
-                Destroy(gameObject);
-                return;
-            }
+             baseItem = collision.transform.GetComponentInParent<GameBaseItem>();
         }
-        Building building = collision.transform.GetComponentInParent<Building>();
-        if (building != null)
+        else
         {
-            if (building.camp == camp)
+             baseItem = collision.transform.GetComponent<GameBaseItem>();
+        }
+ 
+        if (baseItem != null)
+        {
+            if(baseItem.camp == camp)
             {
                 //射中友军
                 return;
@@ -81,7 +74,7 @@ public class AtkArchery : BaseMonoBehaviour
             {
                 isFire = false;
                 transform.SetParent(collision.transform);
-                building.UnderAttack(objFire, damage);
+                baseItem.UnderAttack(objFire, damage);
                 Destroy(gameObject);
                 return;
             }
@@ -96,7 +89,7 @@ public class AtkArchery : BaseMonoBehaviour
     /// 发射弓箭
     /// </summary>
     /// <param name="targetPosition"></param>
-    public void FireArchery(GameObject objFire, CampEnum camp,int damage, Vector3 targetPosition)
+    public void FireArchery(GameBaseItem objFire, CampEnum camp,int damage, Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
         this.camp = camp;
@@ -120,7 +113,7 @@ public class AtkArchery : BaseMonoBehaviour
 
         isFire = true;
 
-        StartCoroutine(CoroutineForDestory(10));
+        StartCoroutine(CoroutineForDestory(5));
     }
 
     public IEnumerator CoroutineForDestory(float time)

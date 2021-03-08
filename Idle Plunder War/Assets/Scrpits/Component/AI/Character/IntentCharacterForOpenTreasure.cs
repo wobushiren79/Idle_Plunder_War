@@ -22,6 +22,7 @@ public class IntentCharacterForOpenTreasure : AIBaseIntent
 
     public override void IntentEntering()
     {
+        characterAI.character.characterMove.StopMove();
         timeForOpen = 0;
     }
 
@@ -40,11 +41,12 @@ public class IntentCharacterForOpenTreasure : AIBaseIntent
             return;
         timeForOpen = characterAI.character.characterInfoData.attribute_atk_interval;
 
-        int damage = characterAI.character.currentAtk;
-        int treasureLife = characterAI.targetTreasure.ChangeLife(-damage);
-        characterAI.character.characterAnim.PlayAttack();
+        if (characterAI.targetTreasure != null)
+        {
+            AtkTypeHandler.Instance.AtkTarget(characterAI.character.characterInfoData.GetAtkType(), characterAI.character, characterAI.targetTreasure);
+        }
         //如果宝箱已经打开
-        if (treasureLife <= 0)
+        if (characterAI.targetTreasure != null && characterAI.targetTreasure.currentLife <= 0)
         {
             TreasureHandler.Instance.manager.ClearAllTreasure();
             GameHandler.Instance.EndGame();

@@ -96,7 +96,7 @@ public class IntentCharacterForBattle : AIBaseIntent
         //如果角色已经死亡
         if (enemyLife <= 0)
         {
-            switch (characterAI.character.characterCamp)
+            switch (characterAI.character.camp)
             {
                 case CampEnum.Player:
                     characterAI.ChangeIntent(AIIntentEnum.CharacterPlayerIdle);

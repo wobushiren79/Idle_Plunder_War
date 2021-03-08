@@ -43,8 +43,6 @@ public class IntentCharacterForAtkBuilding : AIBaseIntent
             return;
         timeForAttack = characterAI.character.characterInfoData.attribute_atk_interval;
 
-        int damage = characterAI.character.currentAtk;
-
         int enemyLife;
         if (characterAI.targetBuilding == null || characterAI.targetBuilding.currentLife <= 0)
         {
@@ -63,7 +61,7 @@ public class IntentCharacterForAtkBuilding : AIBaseIntent
         //如果建筑已经死亡
         if (enemyLife <= 0)
         {
-            switch (characterAI.character.characterCamp)
+            switch (characterAI.character.camp)
             {
                 case CampEnum.Player:
                     characterAI.ChangeIntent(AIIntentEnum.CharacterPlayerIdle);
