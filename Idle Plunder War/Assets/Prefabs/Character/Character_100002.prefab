@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7686548762634969934}
   m_Layer: 0
-  m_Name: Character_2
+  m_Name: Character_100002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,6 +94,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3048023694486574386, guid: 07259a867dde7314ab8e0cbb8e730c11, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b96a16f0bcf0649468a989553a51ccab, type: 2}
     - target: {fileID: -927199367670048503, guid: 07259a867dde7314ab8e0cbb8e730c11, type: 3}
       propertyPath: m_Name
       value: B02_skin
