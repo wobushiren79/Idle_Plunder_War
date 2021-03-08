@@ -69,7 +69,7 @@ public class AtkArchery : BaseMonoBehaviour
                 return;
             }
         }
-        Building building = collision.transform.GetComponent<Building>();
+        Building building = collision.transform.GetComponentInParent<Building>();
         if (building != null)
         {
             if (building.camp == camp)
