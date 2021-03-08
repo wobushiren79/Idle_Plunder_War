@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7686548762634969934}
   m_Layer: 0
-  m_Name: Character_1
+  m_Name: Character_100001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,6 +98,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: B01_skin
       objectReference: {fileID: 0}
+    - target: {fileID: -529238208589735757, guid: 40c65dea16580784481d862a37e56cd6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b96a16f0bcf0649468a989553a51ccab, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40c65dea16580784481d862a37e56cd6, type: 3}
 --- !u!4 &5275954445707415571 stripped
