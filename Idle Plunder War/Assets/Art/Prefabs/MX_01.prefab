@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6937640352562730392}
   - component: {fileID: 6334498358352534077}
   - component: {fileID: 8073933751093374711}
+  - component: {fileID: 925881909883474181}
   m_Layer: 0
   m_Name: MX_01
   m_TagString: Untagged
@@ -55,6 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -79,3 +81,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &925881909883474181
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713720066882834210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6704950347406850553, guid: d3691d5eef8a27641abc6e870c71920f, type: 3}
