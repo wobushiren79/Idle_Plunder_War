@@ -102,6 +102,7 @@ MonoBehaviour:
     attribute_eye_range: 0
     attribute_life: 0
     weight: 0
+    atk_type: 0
   characterAI: {fileID: 0}
   characterCamp: 0
   currentMaxLife: 0
@@ -206,5 +207,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.12
-  m_Center: {x: 0, y: 0.1, z: 0}
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0.25, z: 0}

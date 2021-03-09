@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6339125475599220105}
   - component: {fileID: 6941949859124965932}
   - component: {fileID: 5166250907258029798}
+  - component: {fileID: 2907997130578582310}
   m_Layer: 0
   m_Name: BX_01
   m_TagString: Untagged
@@ -55,10 +56,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b796f261e1788904fa73483d7573d26d, type: 2}
+  - {fileID: 2100000, guid: 741020651a2b39644a37186544b514e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,3 +81,18 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2907997130578582310
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6679622904445413171}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 394146861417378146, guid: 4e2a2f4de8e09834d849aa9630d64143, type: 3}

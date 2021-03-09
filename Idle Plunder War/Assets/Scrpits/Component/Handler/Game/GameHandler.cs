@@ -32,7 +32,6 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             EnemyTreasureData treasureData = data.GetTreasureData();
             CreateTreasure(treasureData.treasureId, treasureData.position.GetVector3(), treasureData.eulerAngles.GetVector3());
 
-            AstarPath.active.ScanAsync();
             //初始化完成
             callBack?.Invoke();
         };
@@ -42,11 +41,14 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
 
     public void StartGame()
     {
+
+        AstarPath.active.Scan();
         UIHandler.Instance.manager.OpenUIAndCloseOther<UIGameMain>(UIEnum.GameMain);
         manager.gameData.SetGameStatus(GameStatusEnum.InGame);
         StartCoroutine(CoroutineForCreatePlayerCharacter());
         StartCoroutine(CoroutineForAddLevelUp());
     }
+
 
     public void EndGame()
     {

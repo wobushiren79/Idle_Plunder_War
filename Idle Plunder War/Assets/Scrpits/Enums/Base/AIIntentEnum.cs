@@ -27,4 +27,9 @@ public enum AIIntentEnum
     CharacterDead,
     //角色休息
     CharacterRest,
+
+    //建筑闲置
+    BuildingIdle,
+    //建筑攻击
+    BuildingAtk,
 }

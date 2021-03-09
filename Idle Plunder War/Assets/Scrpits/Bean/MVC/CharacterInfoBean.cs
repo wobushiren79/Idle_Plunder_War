@@ -24,4 +24,10 @@ public class CharacterInfoBean : BaseBean
     public int attribute_life;
     //±ÈÖØ
     public int weight;
+    public int atk_type;
+
+    public AtkTypeEnum GetAtkType()
+    {
+        return (AtkTypeEnum)atk_type;
+    }
 }

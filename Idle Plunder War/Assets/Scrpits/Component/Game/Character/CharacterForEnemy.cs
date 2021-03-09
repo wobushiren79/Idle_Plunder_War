@@ -13,7 +13,7 @@ public class CharacterForEnemy : Character
         characterAI.InitData(this);
     }
 
-    public override void SetData(CharacterCampEnum characterCamp, CharacterInfoBean characterInfoData)
+    public override void SetData(CampEnum characterCamp, CharacterInfoBean characterInfoData)
     {
         base.SetData(characterCamp, characterInfoData);
         //设置初始化位置

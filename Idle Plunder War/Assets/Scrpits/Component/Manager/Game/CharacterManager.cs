@@ -62,11 +62,11 @@ public class CharacterManager : BaseManager, ICharacterInfoView
     public Character DistributeRival(Character character)
     {
         List<Character> listRival = null;
-        if (character.characterCamp == CharacterCampEnum.Player)
+        if (character.camp == CampEnum.Player)
         {
             listRival = listEnemyCharacter;
         }
-        else if (character.characterCamp == CharacterCampEnum.Enemy)
+        else if (character.camp == CampEnum.Enemy)
         {
             listRival = listPlayerCharacter;
         }
@@ -111,16 +111,16 @@ public class CharacterManager : BaseManager, ICharacterInfoView
     /// </summary>
     /// <param name="characterCamp"></param>
     /// <returns></returns>
-    public GameObject GetCharacterBaseModel(CharacterCampEnum characterCamp)
+    public GameObject GetCharacterBaseModel(CampEnum characterCamp)
     {
         string baseModelName = "";
 
         switch (characterCamp)
         {
-            case CharacterCampEnum.Player:
+            case CampEnum.Player:
                 baseModelName = "PlayerCharacter";
                 break;
-            case CharacterCampEnum.Enemy:
+            case CampEnum.Enemy:
                 baseModelName = "EnemyCharacter";
                 break;
         }
@@ -145,11 +145,11 @@ public class CharacterManager : BaseManager, ICharacterInfoView
     /// <param name="character"></param>
     public void AddCharacter(Character character)
     {
-        if (character.characterCamp == CharacterCampEnum.Enemy)
+        if (character.camp == CampEnum.Enemy)
         {
             listEnemyCharacter.Add(character);
         }
-        else if (character.characterCamp == CharacterCampEnum.Player)
+        else if (character.camp == CampEnum.Player)
         {
             listPlayerCharacter.Add(character);
         }
@@ -161,12 +161,12 @@ public class CharacterManager : BaseManager, ICharacterInfoView
     /// <param name="character"></param>
     public void RemoveCharacter(Character character)
     {
-        if (character.characterCamp == CharacterCampEnum.Enemy)
+        if (character.camp == CampEnum.Enemy)
         {
             if (listEnemyCharacter.Contains(character))
                 listEnemyCharacter.Remove(character);
         }
-        else if (character.characterCamp == CharacterCampEnum.Player)
+        else if (character.camp == CampEnum.Player)
         {
             if (listPlayerCharacter.Contains(character))
                 listPlayerCharacter.Remove(character);

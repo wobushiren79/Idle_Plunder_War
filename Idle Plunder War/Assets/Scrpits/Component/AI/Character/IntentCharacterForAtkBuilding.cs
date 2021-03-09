@@ -43,11 +43,6 @@ public class IntentCharacterForAtkBuilding : AIBaseIntent
             return;
         timeForAttack = characterAI.character.characterInfoData.attribute_atk_interval;
 
-        //面朝对手
-        characterAI.character.transform.LookAt(characterAI.rivalCharacter.transform.position);
-
-        int damage = characterAI.character.currentAtk;
-
         int enemyLife;
         if (characterAI.targetBuilding == null || characterAI.targetBuilding.currentLife <= 0)
         {
@@ -55,18 +50,23 @@ public class IntentCharacterForAtkBuilding : AIBaseIntent
         }
         else
         {
-            enemyLife = characterAI.targetBuilding.UnderAttack(damage);
+            //面朝对手
+            characterAI.character.transform.LookAt(characterAI.targetBuilding.transform.position);
+
+            AtkTypeHandler.Instance.AtkTarget(characterAI.character.characterInfoData.GetAtkType(), characterAI.character, characterAI.targetBuilding);
+
+            enemyLife = characterAI.targetBuilding.currentLife;
+
         }
-        characterAI.character.characterAnim.PlayAttack();
         //如果建筑已经死亡
         if (enemyLife <= 0)
         {
-            switch (characterAI.character.characterCamp)
+            switch (characterAI.character.camp)
             {
-                case CharacterCampEnum.Player:
+                case CampEnum.Player:
                     characterAI.ChangeIntent(AIIntentEnum.CharacterPlayerIdle);
                     break;
-                case CharacterCampEnum.Enemy:
+                case CampEnum.Enemy:
                     characterAI.ChangeIntent(AIIntentEnum.CharacterEnemyBack);
                     break;
             }
