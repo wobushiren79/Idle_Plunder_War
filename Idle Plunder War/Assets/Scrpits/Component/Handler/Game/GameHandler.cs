@@ -22,7 +22,9 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
 
         Action<SceneInfoBean> action = (data) =>
         {
-
+            //设置相机
+            data.GetCameraPosition(out Vector3 cameraPostion, out Vector3 cameraAngle);
+            CameraHandler.Instance.SetCameraPosition(cameraPostion, cameraAngle);
             //创建敌人
             List<EnemyCharacterData> listEnemyCharacter = data.GetListEnemyData();
             CreateEnemy(listEnemyCharacter);
@@ -87,15 +89,13 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
     /// 创建友方
     /// </summary>
     /// <param name="userTeam"></param>
-    public void CreatePlayer(UserTeamBean userTeam)
+    public void CreatePlayer(UserTeamBean userTeam,Vector3 buildPosition,Vector3 buildAngle)
     {
         List<long> listMember = userTeam.listMember;
-        //获取生成点位置
-        Transform positionPlayerBuild = GameSceneHandler.Instance.manager.positionPlayerBuild;
         for (int i = 0; i < listMember.Count; i++)
         {
             long memberId = listMember[i];
-            CharacterHandler.Instance.CreatePlayerCharacter(memberId, positionPlayerBuild.position, positionPlayerBuild.eulerAngles);
+            CharacterHandler.Instance.CreatePlayerCharacter(memberId, buildPosition, buildAngle);
         }
     }
 
@@ -144,9 +144,10 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
                 LevelInfoBean levelInfo = manager.GetLevelInfoForNumber(gameData.levelForNumber);
                 levelInfo.GetData(out float levelData);
                 int teamNumber = (int)levelData;
+                sceneInfo.GetPlayerPosition(out Vector3 playerPostion, out Vector3 playerAngle);
                 for (int i = 0; i < teamNumber; i++)
                 {
-                    CreatePlayer(userData.teamData);
+                    CreatePlayer(userData.teamData, playerPostion, playerAngle);
                 }
             }
 

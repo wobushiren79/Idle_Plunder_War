@@ -9,4 +9,6 @@ public class TagInfo
     public readonly static string Tag_AudioListener = "AudioListener";
 
     public readonly static string Tag_PlayerBuild = "PlayerBuild";
+    public readonly static string Tag_Camera = "Camera";
+    public readonly static string Tag_MainCamera = "MainCamera";
 }

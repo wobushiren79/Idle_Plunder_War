@@ -168,6 +168,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: B02_skin
       objectReference: {fileID: 0}
+    - target: {fileID: 2597128590926650254, guid: 07259a867dde7314ab8e0cbb8e730c11, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597128590926650254, guid: 07259a867dde7314ab8e0cbb8e730c11, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: be40d60a183a2fe45858b74322ce85b7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07259a867dde7314ab8e0cbb8e730c11, type: 3}
 --- !u!1 &3039001721402695711 stripped

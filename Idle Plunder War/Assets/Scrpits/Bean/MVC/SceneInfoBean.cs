@@ -22,6 +22,9 @@ public class SceneInfoBean : BaseBean
 
     public string treasure_data;
 
+    public string player_position;
+    public string camera_position;
+
     public EnemyTreasureData GetTreasureData()
     {
         EnemyTreasureData enemyBaseData = JsonUtil.FromJson<EnemyTreasureData>(treasure_data);
@@ -61,5 +64,40 @@ public class SceneInfoBean : BaseBean
         DataStorageListBean<EnemyBuildingData> handBean = new DataStorageListBean<EnemyBuildingData>();
         handBean.listData = listData;
         building_data = JsonUtil.ToJson(handBean);
+    }
+
+    public void SetPlayerPosition(Vector3 postion, Vector3 angle)
+    {
+        player_position = postion.x + "," + postion.y + "," + postion.z + "|" + angle.x + "," + angle.y + "," + angle.z;
+    }
+    public void SetCameraPosition(Vector3 postion, Vector3 angle)
+    {
+        camera_position = postion.x + "," + postion.y + "," + postion.z + "|" + angle.x + "," + angle.y + "," + angle.z;
+    }
+
+    public void GetPlayerPosition(out Vector3 postion, out Vector3 angle)
+    {
+        GetPosition(player_position, out postion, out angle);
+    }
+    public void GetCameraPosition(out Vector3 postion, out Vector3 angle)
+    {
+        GetPosition(camera_position, out postion, out angle);
+    }
+
+    protected void GetPosition(string data, out Vector3 postion, out Vector3 angle)
+    {
+        if (CheckUtil.StringIsNull(data))
+        {
+            postion = Vector3.zero;
+            angle = Vector3.zero;
+            return;
+        }
+        string[] dataList = StringUtil.SplitBySubstringForArrayStr(data, '|');
+        string positionStr = dataList[0];
+        string angleStr = dataList[1];
+        float[] positionList = StringUtil.SplitBySubstringForArrayFloat(positionStr, ',');
+        float[] angleList = StringUtil.SplitBySubstringForArrayFloat(angleStr, ',');
+        postion = new Vector3(positionList[0], positionList[1], positionList[2]);
+        angle = new Vector3(angleList[0], angleList[1], angleList[2]);
     }
 }
