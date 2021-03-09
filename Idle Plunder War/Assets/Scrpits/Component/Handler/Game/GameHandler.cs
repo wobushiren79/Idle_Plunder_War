@@ -110,7 +110,8 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         for (int i = 0; i < listBuildingData.Count; i++)
         {
             EnemyBuildingData buildingData = listBuildingData[i];
-            BuildingHandler.Instance.CreateBuilding(buildingData.buildingId, buildingData.position.GetVector3(), buildingData.eulerAngles.GetVector3());
+            Building building = BuildingHandler.Instance.CreateBuilding(buildingData.buildingId, buildingData.position.GetVector3(), buildingData.eulerAngles.GetVector3());
+            building.buildingAI.ChangeIntent(AIIntentEnum.BuildingIdle);
         }
     }
     public void CreateTreasure(long treasureId, Vector3 position, Vector3 eulerAngles)
