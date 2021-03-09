@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyEditor : EditorWindow
 {
-
     protected SceneInfoService sceneInfoService;
     protected SceneInfoBean sceneInfo = new SceneInfoBean();
 
@@ -100,12 +99,21 @@ public class EnemyEditor : EditorWindow
             {
                 CreateBuilding(itemData.buildingId, itemData.position.GetVector3(), itemData.eulerAngles.GetVector3()); ;
             }
-
             //建筑ID
             EnemyTreasureData enemyTreasureData = sceneInfo.GetTreasureData();
             TreasureHandler.Instance.manager.ClearAllTreasureInEditor();
             if (enemyTreasureData != null && enemyTreasureData.position != null && enemyTreasureData.eulerAngles != null)
-                CreateTreasure(enemyTreasureData.treasureId, enemyTreasureData.position.GetVector3(), enemyTreasureData.eulerAngles.GetVector3()); ;
+                CreateTreasure(enemyTreasureData.treasureId, enemyTreasureData.position.GetVector3(), enemyTreasureData.eulerAngles.GetVector3());
+
+            GameObject objCamera = GameObject.FindWithTag(TagInfo.Tag_MainCamera);
+            sceneInfo.GetCameraPosition(out Vector3 cameraPosition, out Vector3 cameraAngle);
+            objCamera.transform.position = cameraPosition;
+            objCamera.transform.eulerAngles = cameraAngle;
+
+            GameObject objPlayerBuild = GameObject.FindWithTag(TagInfo.Tag_PlayerBuild);
+            sceneInfo.GetPlayerPosition(out Vector3 playerPosition, out Vector3 playerAngle);
+            objPlayerBuild.transform.position = playerPosition;
+            objPlayerBuild.transform.eulerAngles = playerAngle;
         }
     }
 
@@ -147,6 +155,12 @@ public class EnemyEditor : EditorWindow
         treasureData.eulerAngles = new Vector3Bean(treasure.transform.eulerAngles);
         treasureData.treasureId = treasure.treasureInfo.id;
         sceneInfo.SetTreasureData(treasureData);
+
+        GameObject objCamera= GameObject.FindWithTag(TagInfo.Tag_MainCamera);
+        sceneInfo.SetCameraPosition(objCamera.transform.position, objCamera.transform.eulerAngles);
+
+        GameObject objPlayerBuild = GameObject.FindWithTag(TagInfo.Tag_PlayerBuild);
+        sceneInfo.SetPlayerPosition(objPlayerBuild.transform.position, objPlayerBuild.transform.eulerAngles);
 
         sceneInfoService.UpdateData(sceneInfo);
     }

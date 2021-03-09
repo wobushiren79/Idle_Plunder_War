@@ -15,7 +15,6 @@ public class BuildingHandler : BaseHandler<BuildingHandler, BuildingManager>
         BuildingInfoBean buildingInfo = manager.GetBuildingInfo(buildingId);
         Building building = CreateBuilding(buildingInfo, position, eulerAngles);
         building.camp = CampEnum.Enemy;
-        building.buildingAI.ChangeIntent(AIIntentEnum.BuildingIdle);
         return building;
     }
 

@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
+using System.Collections;
 
 public class Character : GameBaseItem
 {
@@ -20,12 +21,10 @@ public class Character : GameBaseItem
             if (_characterRenderer == null)
             {
                 _characterRenderer = GetComponentInChildren<Renderer>();
-                characterColor = _characterRenderer.material.color;
             }
             return _characterRenderer;
         }
     }
-    protected Color characterColor;
 
 
     public virtual void Awake()
@@ -91,8 +90,6 @@ public class Character : GameBaseItem
                 gameData.AddGold((long)(characterInfoData.price * levelData));
             }
             characterAI.ChangeIntent(AIIntentEnum.CharacterDead);
-            //死亡
-            Destroy(gameObject);
         }
         else
         {
@@ -116,8 +113,15 @@ public class Character : GameBaseItem
         }
 
         //characterAnim.PlayHit();
-        characterRenderer.material.color = characterColor;
-        characterRenderer.material.DOColor(Color.red, 0.5f).From();
+        Material[] mats= characterRenderer.materials;
+        if (mats.Length >= 2)
+        {
+            Material material = mats[1];
+            material.DOKill();
+            material.color = new Color(1,1,1,0);
+            material.DOFade(0.5f, 0.5f).From();
+        }
+
         return life;
     }
 
@@ -130,11 +134,24 @@ public class Character : GameBaseItem
         gameObject.layer = LayerInfo.Dead;
         characterMove.ClosePath();
         characterAnim.PlayDead();
+        StartCoroutine(CoroutineForDeadDestory(2));
         //transform
         //    .DOLocalRotate(new Vector3(90, 0, 0), 1, RotateMode.LocalAxisAdd)
         //    .OnComplete(() => { Destroy(gameObject); });
         //characterRB.useGravity = true;
         //characterRB.freezeRotation = false;
+    }
+
+
+    /// <summary>
+    /// 携程-死亡删除
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    public IEnumerator CoroutineForDeadDestory(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 
 

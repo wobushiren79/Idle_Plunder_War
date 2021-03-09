@@ -22,16 +22,19 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
 
         Action<SceneInfoBean> action = (data) =>
         {
+            //设置相机
+            data.GetCameraPosition(out Vector3 cameraPostion, out Vector3 cameraAngle);
+            CameraHandler.Instance.SetCameraPosition(cameraPostion, cameraAngle);
             //创建敌人
             List<EnemyCharacterData> listEnemyCharacter = data.GetListEnemyData();
             CreateEnemy(listEnemyCharacter);
+
             //创建建筑
             List<EnemyBuildingData> listEnemyBuildings = data.GetListBuildingData();
             CreateBuilding(listEnemyBuildings);
             //创建宝藏
             EnemyTreasureData treasureData = data.GetTreasureData();
             CreateTreasure(treasureData.treasureId, treasureData.position.GetVector3(), treasureData.eulerAngles.GetVector3());
-
             //初始化完成
             callBack?.Invoke();
         };
@@ -86,15 +89,13 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
     /// 创建友方
     /// </summary>
     /// <param name="userTeam"></param>
-    public void CreatePlayer(UserTeamBean userTeam)
+    public void CreatePlayer(UserTeamBean userTeam,Vector3 buildPosition,Vector3 buildAngle)
     {
         List<long> listMember = userTeam.listMember;
-        //获取生成点位置
-        Transform positionPlayerBuild = GameSceneHandler.Instance.manager.positionPlayerBuild;
         for (int i = 0; i < listMember.Count; i++)
         {
             long memberId = listMember[i];
-            CharacterHandler.Instance.CreatePlayerCharacter(memberId, positionPlayerBuild.position, positionPlayerBuild.eulerAngles);
+            CharacterHandler.Instance.CreatePlayerCharacter(memberId, buildPosition, buildAngle);
         }
     }
 
@@ -109,7 +110,11 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         for (int i = 0; i < listBuildingData.Count; i++)
         {
             EnemyBuildingData buildingData = listBuildingData[i];
-            BuildingHandler.Instance.CreateBuilding(buildingData.buildingId, buildingData.position.GetVector3(), buildingData.eulerAngles.GetVector3());
+            Building building = BuildingHandler.Instance.CreateBuilding(buildingData.buildingId, buildingData.position.GetVector3(), buildingData.eulerAngles.GetVector3());
+            if (building.buildingInfoData.GetBuildingType() == 0)
+            {
+                building.buildingAI.ChangeIntent(AIIntentEnum.BuildingIdle);
+            }
         }
     }
     public void CreateTreasure(long treasureId, Vector3 position, Vector3 eulerAngles)
@@ -130,13 +135,22 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         GameBean gameData = manager.gameData;
         while (manager.gameData.gameStatus == GameStatusEnum.InGame)
         {
-            LevelInfoBean levelInfo = manager.GetLevelInfoForNumber(gameData.levelForNumber);
-            levelInfo.GetData(out float levelData);
-            int teamNumber = (int)levelData;
-            for (int i = 0; i < teamNumber; i++)
+            if(CharacterHandler.Instance.manager.listEnemyCharacter.Count >= gameData.maxPlayerCharacterNumber)
             {
-                CreatePlayer(userData.teamData);
+
             }
+            else
+            {
+                LevelInfoBean levelInfo = manager.GetLevelInfoForNumber(gameData.levelForNumber);
+                levelInfo.GetData(out float levelData);
+                int teamNumber = (int)levelData;
+                sceneInfo.GetPlayerPosition(out Vector3 playerPostion, out Vector3 playerAngle);
+                for (int i = 0; i < teamNumber; i++)
+                {
+                    CreatePlayer(userData.teamData, playerPostion, playerAngle);
+                }
+            }
+
             timeCountdownForCreatePlayer = sceneInfo.character_build_interval;
             while (timeCountdownForCreatePlayer > 0)
             {

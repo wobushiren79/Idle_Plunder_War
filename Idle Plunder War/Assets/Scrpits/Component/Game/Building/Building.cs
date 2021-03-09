@@ -21,7 +21,6 @@ public class Building : GameBaseItem
         currentAtk = buildingInfoData.attribute_atk;
     }
 
-
     /// <summary>
     /// 收到攻击 
     /// </summary>
@@ -39,8 +38,23 @@ public class Building : GameBaseItem
             levelInfo.GetData(out float levelData);
             gameData.AddGold((long)(buildingInfoData.price * levelData));
             //死亡
-            Destroy(gameObject);
+            buildingAI.ChangeIntent(AIIntentEnum.BuildingDead);
         }
         return life;
+    }
+
+    /// <summary>
+    /// 设置角色死亡
+    /// </summary>
+    public void SetBuildingDead()
+    {
+        currentLife = 0;
+        gameObject.layer = LayerInfo.Dead;
+        Transform tfNew = CptUtil.GetCptInChildrenByName<Transform>(gameObject, "New");
+        Transform tfOld = CptUtil.GetCptInChildrenByName<Transform>(gameObject, "Old");
+        if (tfNew)
+            tfNew.gameObject.SetActive(false);
+        if (tfOld)
+            tfOld.gameObject.SetActive(true);
     }
 }
