@@ -48,7 +48,7 @@ public class IntentBuildingForAtk : AIBaseIntent
         else
         {
             float distance = Vector3.Distance(buildingAI.transform.position, buildingAI.rivalCharacter.characterAI.transform.position);
-            if (distance > buildingAI.building.buildingInfoData.attribute_atk_range)
+            if (distance-0.5f > buildingAI.building.buildingInfoData.attribute_atk_range)
             {
                 buildingAI.ChangeIntent(AIIntentEnum.BuildingIdle);
             }
