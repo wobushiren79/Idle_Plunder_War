@@ -32,4 +32,6 @@ public enum AIIntentEnum
     BuildingIdle,
     //建筑攻击
     BuildingAtk,
+    //建筑死亡
+    BuildingDead,
 }

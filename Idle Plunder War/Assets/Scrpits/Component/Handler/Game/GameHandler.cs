@@ -135,13 +135,21 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         GameBean gameData = manager.gameData;
         while (manager.gameData.gameStatus == GameStatusEnum.InGame)
         {
-            LevelInfoBean levelInfo = manager.GetLevelInfoForNumber(gameData.levelForNumber);
-            levelInfo.GetData(out float levelData);
-            int teamNumber = (int)levelData;
-            for (int i = 0; i < teamNumber; i++)
+            if(CharacterHandler.Instance.manager.listEnemyCharacter.Count >= gameData.maxPlayerCharacterNumber)
             {
-                CreatePlayer(userData.teamData);
+
             }
+            else
+            {
+                LevelInfoBean levelInfo = manager.GetLevelInfoForNumber(gameData.levelForNumber);
+                levelInfo.GetData(out float levelData);
+                int teamNumber = (int)levelData;
+                for (int i = 0; i < teamNumber; i++)
+                {
+                    CreatePlayer(userData.teamData);
+                }
+            }
+
             timeCountdownForCreatePlayer = sceneInfo.character_build_interval;
             while (timeCountdownForCreatePlayer > 0)
             {

@@ -12,6 +12,7 @@ public class GameBean
     public int levelForUp = 1;
 
     public long gold = 0;
+    public int maxPlayerCharacterNumber = 30;
 
     public float levelUpPro = 0;
 
