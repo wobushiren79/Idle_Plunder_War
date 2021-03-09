@@ -156,7 +156,7 @@ public class EnemyEditor : EditorWindow
         treasureData.treasureId = treasure.treasureInfo.id;
         sceneInfo.SetTreasureData(treasureData);
 
-        GameObject objCamera= GameObject.FindWithTag(TagInfo.Tag_Camera);
+        GameObject objCamera= GameObject.FindWithTag(TagInfo.Tag_MainCamera);
         sceneInfo.SetCameraPosition(objCamera.transform.position, objCamera.transform.eulerAngles);
 
         GameObject objPlayerBuild = GameObject.FindWithTag(TagInfo.Tag_PlayerBuild);
