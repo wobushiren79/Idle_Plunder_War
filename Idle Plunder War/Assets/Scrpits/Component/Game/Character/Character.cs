@@ -21,12 +21,10 @@ public class Character : GameBaseItem
             if (_characterRenderer == null)
             {
                 _characterRenderer = GetComponentInChildren<Renderer>();
-                characterColor = _characterRenderer.material.color;
             }
             return _characterRenderer;
         }
     }
-    protected Color characterColor;
 
 
     public virtual void Awake()
@@ -115,8 +113,15 @@ public class Character : GameBaseItem
         }
 
         //characterAnim.PlayHit();
-        characterRenderer.material.color = characterColor;
-        characterRenderer.material.DOColor(Color.red, 0.5f).From();
+        Material[] mats= characterRenderer.materials;
+        if (mats.Length >= 2)
+        {
+            Material material = mats[1];
+            material.DOKill();
+            material.color = new Color(1,1,1,0);
+            material.DOFade(0.5f, 0.5f).From();
+        }
+
         return life;
     }
 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerBuild
   - AtkPosition
+  - Camera
   layers:
   - Default
   - TransparentFX

@@ -50,4 +50,11 @@ public class CameraHandler : BaseHandler<CameraHandler, CameraManager>
         Camera camera = manager.mainCamera;
         camera.transform.position += moveOffset * speedForMove * Time.deltaTime;
     }
+
+    public void SetCameraPosition(Vector3 position,Vector3 angle)
+    {
+        Camera camera = manager.mainCamera;
+        camera.transform.position = position;
+        camera.transform.eulerAngles = angle;
+    }
 }

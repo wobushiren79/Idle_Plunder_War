@@ -63,9 +63,11 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
         GameObject objChacater = Instantiate(gameObject, objBaseModel, position);
         Instantiate(objChacater, objLookModel);
         objChacater.transform.eulerAngles = eulerAngles;
+
         //设置数据
         Character character = objChacater.GetComponent<Character>();
         character.SetData(characterCamp, characterInfo);
+
         //记录进list
         manager.AddCharacter(character);
 

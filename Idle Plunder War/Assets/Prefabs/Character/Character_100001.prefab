@@ -99,9 +99,17 @@ PrefabInstance:
       value: B01_skin
       objectReference: {fileID: 0}
     - target: {fileID: -529238208589735757, guid: 40c65dea16580784481d862a37e56cd6, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -529238208589735757, guid: 40c65dea16580784481d862a37e56cd6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b96a16f0bcf0649468a989553a51ccab, type: 2}
+    - target: {fileID: -529238208589735757, guid: 40c65dea16580784481d862a37e56cd6, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: be40d60a183a2fe45858b74322ce85b7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40c65dea16580784481d862a37e56cd6, type: 3}
 --- !u!4 &5275954445707415571 stripped
