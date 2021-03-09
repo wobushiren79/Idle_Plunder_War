@@ -12,14 +12,13 @@ public class AtkTypeHandler : BaseHandler<AtkTypeHandler, AtkTypeManager>
             Character atkCharacter = atk as Character;
             atkCharacter.characterAnim.PlayAttack();
         }
-        Vector3 offsetPosition = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+        Vector3 offsetPosition = new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
         switch (atkType)
         {
             case AtkTypeEnum.Melee:
                 HandleForMelee(atk, underAtk);
                 break;
             case AtkTypeEnum.RemoteArcherySingle:
-
                 HandleForRemoteArcherySingle(atk,  atk.atkPosition.position, underAtk.transform.position + offsetPosition);
                 break;
             case AtkTypeEnum.RemoteArcherySingleTrace:

@@ -1,27 +1,27 @@
 ManifestFileVersion: 0
-CRC: 48676164
+CRC: 4165397316
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: character/character
-      Dependencies: {}
-    Info_1:
       Name: character/base
       Dependencies: {}
-    Info_2:
+    Info_1:
       Name: ui/ui
       Dependencies: {}
+    Info_2:
+      Name: character/character
+      Dependencies: {}
     Info_3:
-      Name: treasure/base
-      Dependencies: {}
-    Info_4:
-      Name: treasure/treasure
-      Dependencies: {}
-    Info_5:
       Name: building/building
       Dependencies: {}
-    Info_6:
+    Info_4:
       Name: building/base
+      Dependencies: {}
+    Info_5:
+      Name: treasure/treasure
+      Dependencies: {}
+    Info_6:
+      Name: treasure/base
       Dependencies: {}
     Info_7:
       Name: model/atk

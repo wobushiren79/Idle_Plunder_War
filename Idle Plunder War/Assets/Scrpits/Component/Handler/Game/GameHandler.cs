@@ -22,16 +22,17 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
 
         Action<SceneInfoBean> action = (data) =>
         {
+
             //创建敌人
             List<EnemyCharacterData> listEnemyCharacter = data.GetListEnemyData();
             CreateEnemy(listEnemyCharacter);
+
             //创建建筑
             List<EnemyBuildingData> listEnemyBuildings = data.GetListBuildingData();
             CreateBuilding(listEnemyBuildings);
             //创建宝藏
             EnemyTreasureData treasureData = data.GetTreasureData();
             CreateTreasure(treasureData.treasureId, treasureData.position.GetVector3(), treasureData.eulerAngles.GetVector3());
-
             //初始化完成
             callBack?.Invoke();
         };
@@ -109,7 +110,8 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         for (int i = 0; i < listBuildingData.Count; i++)
         {
             EnemyBuildingData buildingData = listBuildingData[i];
-            BuildingHandler.Instance.CreateBuilding(buildingData.buildingId, buildingData.position.GetVector3(), buildingData.eulerAngles.GetVector3());
+            Building building = BuildingHandler.Instance.CreateBuilding(buildingData.buildingId, buildingData.position.GetVector3(), buildingData.eulerAngles.GetVector3());
+            building.buildingAI.ChangeIntent(AIIntentEnum.BuildingIdle);
         }
     }
     public void CreateTreasure(long treasureId, Vector3 position, Vector3 eulerAngles)
