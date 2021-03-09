@@ -58,6 +58,10 @@ public class IntentCharacterForMoveToTreasure : AIBaseIntent
         {
             characterAI.ChangeIntent(AIIntentEnum.CharacterOpenTreasure);
         }
+        else
+        {
+            characterAI.character.characterMove.SetDestination(characterAI.targetTreasure.transform.position);
+        }
     }
 
 }

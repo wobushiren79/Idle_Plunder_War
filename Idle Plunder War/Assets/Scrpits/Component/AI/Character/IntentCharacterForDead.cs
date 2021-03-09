@@ -1,6 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
-
+using System.Collections;
 public class IntentCharacterForDead : AIBaseIntent
 {
     protected AICharacterEntity characterAI;
@@ -15,20 +15,17 @@ public class IntentCharacterForDead : AIBaseIntent
 
     public override void IntentActUpdate()
     {
-        AnimatorStateInfo animatorInfo = characterAI.character.characterAnim.characterAnim.GetCurrentAnimatorStateInfo(0);
-        if (animatorInfo.normalizedTime >= 0.95f)
-        {
-            GameObject.Destroy(characterAI.gameObject);
-        }
     }
 
     public override void IntentEntering()
     {
         characterAI.character.SetCharacterDead();
         CharacterHandler.Instance.manager.RemoveCharacter(characterAI.character);
+        
     }
 
     public override void IntentLeaving()
     {
+
     }
 }

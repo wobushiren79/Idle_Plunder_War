@@ -8,11 +8,22 @@ public class GameControl : BaseMonoBehaviour
     private Touch oldTouch1;  //上次触摸点1(手指1)  
     private Touch oldTouch2;  //上次触摸点2(手指2) 
 
+    public GameObject objMoveTarget;
+    public float timeMoveTarge;
+
     public void Update()
     {
         HandleForTargetMove();
-        HandleForCameraMove();
-        HandleForCameraZoom();
+        //HandleForCameraMove();
+        //HandleForCameraZoom();
+        if (timeMoveTarge > 0)
+        {
+            timeMoveTarge -= Time.deltaTime;
+            if (timeMoveTarge <= 0)
+            {
+                objMoveTarget.gameObject.SetActive(false);
+            }
+        }   
     }
 
     public void HandleForTargetMove()
@@ -31,7 +42,12 @@ public class GameControl : BaseMonoBehaviour
             case InputActionPhase.Started:
                 RayUtil.RayToScreenPoint(100, 1 << LayerInfo.Ground, out RaycastHit hitInfo);
                 if (hitInfo.collider != null)
+                {
                     CharacterHandler.Instance.MovePlayerCharacter(hitInfo.point);
+                    timeMoveTarge = 2;
+                    objMoveTarget.gameObject.SetActive(true);
+                    objMoveTarget.transform.position = hitInfo.point;
+                }        
                 break;
         }
     }

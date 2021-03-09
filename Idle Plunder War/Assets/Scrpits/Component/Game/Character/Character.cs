@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
+using System.Collections;
 
 public class Character : GameBaseItem
 {
@@ -91,8 +92,6 @@ public class Character : GameBaseItem
                 gameData.AddGold((long)(characterInfoData.price * levelData));
             }
             characterAI.ChangeIntent(AIIntentEnum.CharacterDead);
-            //死亡
-            Destroy(gameObject);
         }
         else
         {
@@ -130,11 +129,24 @@ public class Character : GameBaseItem
         gameObject.layer = LayerInfo.Dead;
         characterMove.ClosePath();
         characterAnim.PlayDead();
+        StartCoroutine(CoroutineForDeadDestory(2));
         //transform
         //    .DOLocalRotate(new Vector3(90, 0, 0), 1, RotateMode.LocalAxisAdd)
         //    .OnComplete(() => { Destroy(gameObject); });
         //characterRB.useGravity = true;
         //characterRB.freezeRotation = false;
+    }
+
+
+    /// <summary>
+    /// 携程-死亡删除
+    /// </summary>
+    /// <param name="time"></param>
+    /// <returns></returns>
+    public IEnumerator CoroutineForDeadDestory(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 
 

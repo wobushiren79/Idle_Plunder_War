@@ -12,6 +12,8 @@ using System;
 public class BuildingInfoBean : BaseBean
 {
     public string model_name;
+    //建造类型
+    public int building_type;
     public int attribute_atk;
     public int attribute_life;
     public float attribute_atk_range;
@@ -23,6 +25,11 @@ public class BuildingInfoBean : BaseBean
     public AtkTypeEnum GetAtkType()
     {
         return (AtkTypeEnum)atk_type;
+    }
+
+    public BuildingTypeEnum GetBuildingType()
+    {
+        return (BuildingTypeEnum)building_type;
     }
 
 }
