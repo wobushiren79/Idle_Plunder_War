@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3430165001
+CRC: 710298284
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c72f3baed002d4baf232c00c333b092c
+    Hash: 868ebdc01840588ba415464b42a0cc1d
   TypeTreeHash:
     serializedVersion: 2
     Hash: a0ea37a3c3de54e685b4305c4cc893f8
@@ -36,5 +36,9 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Prefabs/Character/Character_1.prefab
+- Assets/Prefabs/Character/Character_2.prefab
 - Assets/Prefabs/Character/Character_100001.prefab
+- Assets/Prefabs/Character/Character_100002.prefab
+- Assets/Prefabs/Character/Character_100003.prefab
+- Assets/Prefabs/Character/Character_3.prefab
 Dependencies: []

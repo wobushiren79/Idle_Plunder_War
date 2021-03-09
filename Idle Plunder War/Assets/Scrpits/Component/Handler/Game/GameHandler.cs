@@ -22,16 +22,17 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
 
         Action<SceneInfoBean> action = (data) =>
         {
+
             //创建敌人
             List<EnemyCharacterData> listEnemyCharacter = data.GetListEnemyData();
             CreateEnemy(listEnemyCharacter);
+
             //创建建筑
             List<EnemyBuildingData> listEnemyBuildings = data.GetListBuildingData();
             CreateBuilding(listEnemyBuildings);
             //创建宝藏
             EnemyTreasureData treasureData = data.GetTreasureData();
             CreateTreasure(treasureData.treasureId, treasureData.position.GetVector3(), treasureData.eulerAngles.GetVector3());
-
             //初始化完成
             callBack?.Invoke();
         };
