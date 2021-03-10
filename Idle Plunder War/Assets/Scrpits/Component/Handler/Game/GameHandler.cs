@@ -105,7 +105,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         for (int i = 0; i < listMember.Count; i++)
         {
             long memberId = listMember[i];
-            CharacterHandler.Instance.CreatePlayerCharacter(memberId, buildPosition, buildAngle);
+            CharacterHandler.Instance.CreatePlayerCharacter(memberId, buildPosition + new Vector3(1, 0, 0) * 0.5f * i, buildAngle);
         }
     }
 
@@ -147,7 +147,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         List<long> listAddCharacterData = sceneInfo.GetPlayerCharacter();
         while (manager.gameData.gameStatus == GameStatusEnum.InGame)
         {
-            if (CharacterHandler.Instance.manager.listEnemyCharacter.Count >= gameData.maxPlayerCharacterNumber)
+            if (CharacterHandler.Instance.manager.listPlayerCharacter.Count >= gameData.maxPlayerCharacterNumber)
             {
 
             }
@@ -160,7 +160,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
                 int teamNumber = (int)levelData;
                 for (int i = 0; i < teamNumber; i++)
                 {
-                    CreatePlayer(userData.teamData, playerPostion, playerAngle);
+                    CreatePlayer(userData.teamData, playerPostion + new Vector3(0,0,1) * 0.5f * i, playerAngle);
                 }
                 //创建场景添加
                 for (int i = 0; i < listAddCharacterData.Count; i++)
