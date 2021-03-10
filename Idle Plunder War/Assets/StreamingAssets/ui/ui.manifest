@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 698955667
+CRC: 214585322
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c4be0f7e47be5386b716b1d46619bec4
+    Hash: 65dd7cc67f30de7b45a10c1bdf060237
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 8b1d3ca8ba1c2decd07834194b7606dc
+    Hash: c7c30576aaf4080e07bbbe630b4a41cb
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -43,6 +43,8 @@ ClassTypes:
   Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: db60b9953b078d245ac2b1589e5df754, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c95794db88110554097bf6cbcae7c7c7, type: 3}
 - Class: 115
   Script: {instanceID: 0}
 - Class: 128
@@ -56,4 +58,5 @@ ClassTypes:
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Prefabs/UI/GameMain.prefab
+- Assets/Prefabs/UI/GameEnd.prefab
 Dependencies: []

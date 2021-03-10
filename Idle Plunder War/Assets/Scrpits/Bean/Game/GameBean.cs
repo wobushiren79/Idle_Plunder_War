@@ -6,6 +6,8 @@ using System;
 public class GameBean 
 {
     public GameStatusEnum gameStatus = GameStatusEnum.Null;
+    public int gameSceneNumber = 1;
+
     public int levelForPower = 1;
     public int levelForPrice = 1;
     public int levelForNumber = 1;

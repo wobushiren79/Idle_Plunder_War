@@ -7,6 +7,7 @@ public class Launcher : MonoBehaviour
 {
     void Start()
     {
+        GameHandler.Instance.manager.InitGameData();
         Action actionForStartGame = () =>
         {
             GameHandler.Instance.StartGame();

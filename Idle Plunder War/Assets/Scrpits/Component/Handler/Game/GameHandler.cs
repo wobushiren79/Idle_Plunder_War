@@ -6,19 +6,24 @@ using UnityEngine;
 
 public class GameHandler : BaseHandler<GameHandler, GameManager>
 {
-
     public float timeCountdownForCreatePlayer = 0;
 
     public void InitGame(Action callBack)
     {
         //初始化游戏数据
-        GameBean gameData = manager.InitGameData();
+        GameBean gameData = manager.gameData;
         gameData.SetGameStatus(GameStatusEnum.Init);
         UserDataBean userData = GameDataHandler.Instance.manager.GetUserData();
         if (userData == null || CheckUtil.StringIsNull(userData.userId))
         {
             userData = GameDataHandler.Instance.CreateNewData();
         }
+        //清除所有角色
+        CharacterHandler.Instance.manager.ClearAllCharacter();
+        //清除所有角色
+        BuildingHandler.Instance.manager.ClearAllBuilding();
+        //清除所有宝藏
+        TreasureHandler.Instance.manager.ClearAllTreasure();
 
         Action<SceneInfoBean> action = (data) =>
         {
@@ -38,7 +43,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             callBack?.Invoke();
         };
         //获取场景数据
-        manager.GetSceneInfoById(1, action);
+        manager.GetSceneInfoById(gameData.gameSceneNumber, action);
     }
 
     public void StartGame()
@@ -50,7 +55,6 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         StartCoroutine(CoroutineForCreatePlayerCharacter());
         StartCoroutine(CoroutineForAddLevelUp());
     }
-
 
     public void EndGame()
     {
@@ -64,6 +68,13 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             Character itemCharacter = listAllCharacter[i];
             itemCharacter.characterAI.ChangeIntent(AIIntentEnum.CharacterRest);
         }
+        GameBean gameData = manager.gameData;
+        gameData.gameSceneNumber++;
+        if (gameData.gameSceneNumber > 4)
+        {
+            gameData.gameSceneNumber = 1;
+        }
+        UIGameEnd uiGameEnd = UIHandler.Instance.manager.OpenUIAndCloseOther<UIGameEnd>(UIEnum.GameEnd);
     }
 
     /// <summary>
@@ -88,7 +99,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
     /// 创建友方
     /// </summary>
     /// <param name="userTeam"></param>
-    public void CreatePlayer(UserTeamBean userTeam,Vector3 buildPosition,Vector3 buildAngle)
+    public void CreatePlayer(UserTeamBean userTeam, Vector3 buildPosition, Vector3 buildAngle)
     {
         List<long> listMember = userTeam.listMember;
         for (int i = 0; i < listMember.Count; i++)
@@ -116,12 +127,12 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             }
         }
     }
+
     public void CreateTreasure(long treasureId, Vector3 position, Vector3 eulerAngles)
     {
         TreasureInfoBean treasureInfo = TreasureHandler.Instance.manager.GetTreasureInfo(treasureId);
         TreasureHandler.Instance.CreateTreasure(treasureInfo, position, eulerAngles);
     }
-
 
     /// <summary>
     /// 协程-创建友方角色
@@ -132,11 +143,11 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         SceneInfoBean sceneInfo = manager.GetSceneInfo();
         UserDataBean userData = GameDataHandler.Instance.manager.GetUserData();
         GameBean gameData = manager.gameData;
-        
+
         List<long> listAddCharacterData = sceneInfo.GetPlayerCharacter();
         while (manager.gameData.gameStatus == GameStatusEnum.InGame)
         {
-            if(CharacterHandler.Instance.manager.listEnemyCharacter.Count >= gameData.maxPlayerCharacterNumber)
+            if (CharacterHandler.Instance.manager.listEnemyCharacter.Count >= gameData.maxPlayerCharacterNumber)
             {
 
             }
@@ -152,7 +163,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
                     CreatePlayer(userData.teamData, playerPostion, playerAngle);
                 }
                 //创建场景添加
-                for (int i=0;i< listAddCharacterData.Count;i++)
+                for (int i = 0; i < listAddCharacterData.Count; i++)
                 {
                     long itemId = listAddCharacterData[i];
                     CharacterHandler.Instance.CreatePlayerCharacter(itemId, playerPostion, playerAngle);
