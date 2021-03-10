@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 7420589008242613295}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.3, y: -1.2, z: -19.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.36409277, y: 0.36409277, z: 0.36409277}
   m_Children:
   - {fileID: 7420589009812716332}
   m_Father: {fileID: 0}
@@ -285,8 +285,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 20
-      minScalar: 10
+      scalar: 12
+      minScalar: 2.43
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -607,8 +607,8 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 3
-      scalar: -5
-      minScalar: -1
+      scalar: -2
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -747,7 +747,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 10.4
+      value: 1.54
       mode: 0
       spread: 0
       speed:
@@ -1503,7 +1503,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -4861,7 +4861,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7420589009812716331}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 2.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7420589008242613282}
@@ -5119,8 +5119,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 20
-      minScalar: 10
+      scalar: 9.93
+      minScalar: 6.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5441,8 +5441,8 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 3
-      scalar: -5
-      minScalar: -1
+      scalar: -1
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5495,7 +5495,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 30
+    angle: 28.97
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -5581,7 +5581,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 8.54
+      value: 1.68
       mode: 0
       spread: 0
       speed:
@@ -6337,7 +6337,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0

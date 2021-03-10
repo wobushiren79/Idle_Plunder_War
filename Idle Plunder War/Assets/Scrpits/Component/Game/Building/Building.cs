@@ -62,6 +62,7 @@ public class Building : GameBaseItem
         gameObject.layer = LayerInfo.Dead;
         Collider collider= gameObject.GetComponentInChildren<Collider>();
         collider.gameObject.layer= LayerInfo.Dead;
+        EffectHandler.Instance.PlayEffect("effect_zaofangzi_smoke", gameObject.transform.position);
         if (tfNew)
             tfNew.gameObject.SetActive(false);
         if (tfOld)
