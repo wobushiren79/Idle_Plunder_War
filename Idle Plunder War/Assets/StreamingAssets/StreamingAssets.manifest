@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1869152238
+CRC: 3413023192
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -25,4 +25,7 @@ AssetBundleManifest:
       Dependencies: {}
     Info_7:
       Name: model/atk
+      Dependencies: {}
+    Info_8:
+      Name: effect/effect
       Dependencies: {}
