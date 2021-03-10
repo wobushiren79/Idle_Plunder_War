@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4245799387
+CRC: 1000938281
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a0aa4a930f2b0e98fe9d6a6de1189c5e
+    Hash: ced2c16b797ebdddef4d562c6ca7fb1d
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 2bb33b6706f8970e64ae21f084e34150
+    Hash: 718e3e9fed53909880082f57bd47acff
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -15,25 +15,17 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 21
   Script: {instanceID: 0}
-- Class: 23
-  Script: {instanceID: 0}
-- Class: 33
+- Class: 28
   Script: {instanceID: 0}
 - Class: 43
   Script: {instanceID: 0}
 - Class: 48
   Script: {instanceID: 0}
-- Class: 54
+- Class: 198
   Script: {instanceID: 0}
-- Class: 65
-  Script: {instanceID: 0}
-- Class: 96
-  Script: {instanceID: 0}
-- Class: 114
-  Script: {fileID: 11500000, guid: e5c47c65b0061e74b99e928b75102981, type: 3}
-- Class: 115
+- Class: 199
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Prefabs/Atk/AtkArchery_1.prefab
+- Assets/Prefabs/Effect/effect_baoxiang_baojinbi.prefab
 Dependencies: []

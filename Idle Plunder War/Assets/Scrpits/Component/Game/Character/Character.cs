@@ -26,7 +26,6 @@ public class Character : GameBaseItem
         }
     }
 
-
     public virtual void Awake()
     {
         characterMove = GetComponent<CharacterMove>();
@@ -82,7 +81,7 @@ public class Character : GameBaseItem
         if (life <= 0)
         {
             //如果是敌人 增加金币
-            if (atk.camp == CampEnum.Enemy)
+            if (camp == CampEnum.Enemy)
             {
                 GameBean gameData = GameHandler.Instance.manager.gameData;
                 LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForPrice(gameData.levelForPrice);
@@ -142,7 +141,6 @@ public class Character : GameBaseItem
         //characterRB.freezeRotation = false;
     }
 
-
     /// <summary>
     /// 携程-死亡删除
     /// </summary>
@@ -151,8 +149,7 @@ public class Character : GameBaseItem
     public IEnumerator CoroutineForDeadDestory(float time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        transform.DOLocalMoveY(-1, 2).OnComplete(() => { Destroy(gameObject); });
     }
-
 
 }

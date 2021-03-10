@@ -12,5 +12,9 @@ public class Treasure : GameBaseItem
         currentMaxLife = treasureInfo.attribute_life;
     }
 
-
+    public override int UnderAttack(GameBaseItem atk, int damage)
+    {
+        EffectHandler.Instance.PlayEffect("effect_baoxiang_baojinbi", transform.position, 2);
+        return base.UnderAttack(atk, damage);
+    }
 }
