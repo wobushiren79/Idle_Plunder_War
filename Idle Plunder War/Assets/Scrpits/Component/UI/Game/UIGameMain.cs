@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack
 {
-    public Text ui_TvCountDown;
-    public TextMeshProUGUI ui_TvGold;
+    public UIChildForCountDown ui_CountDown;
+    public Text ui_TvGold;
     public UIViewForLevelUp ui_LevelUp;
 
     public Button ui_BtPowerAdd;
@@ -17,9 +17,9 @@ public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack
     public Text ui_TvNumberLevel;
     public Text ui_TvPriceLevel;
 
-    public TextMeshProUGUI ui_TvPowerMoney;
-    public TextMeshProUGUI ui_TvNumberMoney;
-    public TextMeshProUGUI ui_TvPriceMoney;
+    public Text ui_TvPowerMoney;
+    public Text ui_TvNumberMoney;
+    public Text ui_TvPriceMoney;
 
     public override void Awake()
     {
@@ -67,8 +67,8 @@ public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack
 
     public void SetTimeCountDown()
     {
-        if (ui_TvCountDown != null)
-            ui_TvCountDown.text = GameHandler.Instance.timeCountdownForCreatePlayer + "";
+        if (ui_CountDown != null)
+            ui_CountDown.SetCountDownTime((int)GameHandler.Instance.timeCountdownForCreatePlayer);
     }
 
     public void SetPowerInfo()
