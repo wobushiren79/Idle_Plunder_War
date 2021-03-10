@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1000938281
+CRC: 1312823621
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ced2c16b797ebdddef4d562c6ca7fb1d
+    Hash: 420bcc498e16e9ec9cfcf22afeac5895
   TypeTreeHash:
     serializedVersion: 2
     Hash: 718e3e9fed53909880082f57bd47acff
@@ -27,5 +27,6 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/Prefabs/Effect/effect_baoxiang_baojinbi.prefab
+- Assets/Prefabs/Effects/effect_baoxiang_baojinbi.prefab
+- Assets/Prefabs/Effects/effect_zaofangzi_smoke.prefab
 Dependencies: []

@@ -17,13 +17,13 @@ public class IntentCharacterForMoveToTreasure : AIBaseIntent
 
     public override void IntentActUpdate()
     {
+        HandleForArrive();
         timeForSearch -= Time.deltaTime;
         if (timeForSearch <= 0)
         {
             HandleForSearchBattle();
             timeForSearch = timeForSearchInterval;
         }
-        HandleForArrive();
     }
 
     public override void IntentEntering()
@@ -54,7 +54,7 @@ public class IntentCharacterForMoveToTreasure : AIBaseIntent
     protected void HandleForSearchBattle()
     {
         float distance = Vector3.Distance(characterAI.character.transform.position, characterAI.targetTreasure.transform.position);
-        if( distance <= characterAI.character.characterInfoData.attribute_atk_range)
+        if (distance - 2 <= characterAI.character.characterInfoData.attribute_atk_range)
         {
             characterAI.ChangeIntent(AIIntentEnum.CharacterOpenTreasure);
         }

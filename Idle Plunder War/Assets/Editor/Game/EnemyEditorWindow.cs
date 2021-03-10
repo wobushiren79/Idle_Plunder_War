@@ -50,8 +50,10 @@ public class EnemyEditor : EditorWindow
         sceneInfo.id = EditorUI.GUIEditorText(sceneInfo.id);
         EditorUI.GUIText("友方角色生成间隔", 150);
         sceneInfo.character_build_interval = EditorUI.GUIEditorText(sceneInfo.character_build_interval);
-        EditorUI.GUIText("敌人活动范围半径", 150);
-        sceneInfo.enemy_range = EditorUI.GUIEditorText(sceneInfo.enemy_range);
+        EditorUI.GUIText("友方角色", 150);
+        sceneInfo.player_character = EditorUI.GUIEditorText(sceneInfo.player_character);
+        //EditorUI.GUIText("敌人活动范围半径", 150);
+        //sceneInfo.enemy_range = EditorUI.GUIEditorText(sceneInfo.enemy_range);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space(50);

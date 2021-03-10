@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using DG.Tweening;
+using UnityEditor;
 using UnityEngine;
 
 public class Treasure : GameBaseItem
@@ -15,6 +16,8 @@ public class Treasure : GameBaseItem
     public override int UnderAttack(GameBaseItem atk, int damage)
     {
         EffectHandler.Instance.PlayEffect("effect_baoxiang_baojinbi", transform.position, 2);
+        transform.transform.localScale = Vector3.one;
+        transform.DOScale(Vector3.one, 0.2f);
         return base.UnderAttack(atk, damage);
     }
 }

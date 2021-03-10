@@ -17,13 +17,13 @@ public class IntentCharacterForMoveToBuilding : AIBaseIntent
 
     public override void IntentActUpdate()
     {
+        HandleForArrive();
         timeForSearch -= Time.deltaTime;
         if (timeForSearch <= 0)
         {
             HandleForSearchBattle();
             timeForSearch = timeForSearchInterval;
         }
-        HandleForArrive();
     }
 
     public override void IntentEntering()

@@ -28,7 +28,6 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             //创建敌人
             List<EnemyCharacterData> listEnemyCharacter = data.GetListEnemyData();
             CreateEnemy(listEnemyCharacter);
-
             //创建建筑
             List<EnemyBuildingData> listEnemyBuildings = data.GetListBuildingData();
             CreateBuilding(listEnemyBuildings);
@@ -133,6 +132,8 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         SceneInfoBean sceneInfo = manager.GetSceneInfo();
         UserDataBean userData = GameDataHandler.Instance.manager.GetUserData();
         GameBean gameData = manager.gameData;
+        
+        List<long> listAddCharacterData = sceneInfo.GetPlayerCharacter();
         while (manager.gameData.gameStatus == GameStatusEnum.InGame)
         {
             if(CharacterHandler.Instance.manager.listEnemyCharacter.Count >= gameData.maxPlayerCharacterNumber)
@@ -141,13 +142,20 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
             }
             else
             {
+                sceneInfo.GetPlayerPosition(out Vector3 playerPostion, out Vector3 playerAngle);
+                //创建默认
                 LevelInfoBean levelInfo = manager.GetLevelInfoForNumber(gameData.levelForNumber);
                 levelInfo.GetData(out float levelData);
                 int teamNumber = (int)levelData;
-                sceneInfo.GetPlayerPosition(out Vector3 playerPostion, out Vector3 playerAngle);
                 for (int i = 0; i < teamNumber; i++)
                 {
                     CreatePlayer(userData.teamData, playerPostion, playerAngle);
+                }
+                //创建场景添加
+                for (int i=0;i< listAddCharacterData.Count;i++)
+                {
+                    long itemId = listAddCharacterData[i];
+                    CharacterHandler.Instance.CreatePlayerCharacter(itemId, playerPostion, playerAngle);
                 }
             }
 

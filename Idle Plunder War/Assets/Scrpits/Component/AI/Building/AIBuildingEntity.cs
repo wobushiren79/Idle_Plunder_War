@@ -12,5 +12,6 @@ public class AIBuildingEntity : AIBaseEntity
         this.building = building;
         AddIntent(new IntentBuildingForAtk(this));
         AddIntent(new IntentBuildingForIdle(this));
+        AddIntent(new IntentBuildingForDead(this));
     }
 }

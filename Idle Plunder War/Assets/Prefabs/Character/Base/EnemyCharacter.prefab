@@ -90,6 +90,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4635449e10efc9b42a89bfbaccd75482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camp: 0
+  currentMaxLife: 0
+  currentLife: 0
+  currentAtk: 0
   characterInfoData:
     id: 0
     valid: 0
@@ -104,10 +108,6 @@ MonoBehaviour:
     weight: 0
     atk_type: 0
   characterAI: {fileID: 0}
-  characterCamp: 0
-  currentMaxLife: 0
-  currentLife: 0
-  currentAtk: 0
   characterMove: {fileID: 0}
   characterAnim: {fileID: 0}
   positionForStart: {x: 0, y: 0, z: 0}
@@ -209,5 +209,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0.15, z: 0}

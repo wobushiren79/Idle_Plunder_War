@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using DG.Tweening;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -47,6 +48,7 @@ public class GameControl : BaseMonoBehaviour
                     timeMoveTarge = 2;
                     objMoveTarget.gameObject.SetActive(true);
                     objMoveTarget.transform.position = hitInfo.point;
+                    objMoveTarget.transform.DOMoveY(1, 0.5f).From();
                 }        
                 break;
         }
