@@ -24142,35 +24142,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714660, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.3
+      value: 21.52
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714660, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.63
+      value: 21.34
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714660, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.00037569366
+      value: 0.013813561
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714660, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.010347381
+      value: 0.018757015
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714660, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.86689526
+      value: 0.9023734
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714660, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.49838284
+      value: -0.430325
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714660, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 59.78
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714660, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 181.1
+      value: 179.2
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714660, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -24182,7 +24182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714661, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: orthographic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4848936420154714661, guid: 4c29c7d8264a1cd4489daa818faddaaa, type: 3}
       propertyPath: field of view
