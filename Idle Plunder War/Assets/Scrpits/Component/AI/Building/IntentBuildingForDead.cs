@@ -3,7 +3,7 @@ using UnityEngine;
 public class IntentBuildingForDead : AIBaseIntent
 {
     protected AIBuildingEntity buildingAI;
-    public IntentBuildingForDead(AIBuildingEntity aiEntity) : base(AIIntentEnum.CharacterDead, aiEntity)
+    public IntentBuildingForDead(AIBuildingEntity aiEntity) : base(AIIntentEnum.BuildingDead, aiEntity)
     {
         this.buildingAI = aiEntity;
     }

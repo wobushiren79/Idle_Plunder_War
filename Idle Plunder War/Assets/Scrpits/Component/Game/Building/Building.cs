@@ -7,10 +7,13 @@ public class Building : GameBaseItem
     public BuildingInfoBean buildingInfoData;
     public AIBuildingEntity buildingAI;
 
+    protected Transform tfNew;
+    protected Transform tfOld;
     private void Awake()
     {
         buildingAI = CptUtil.AddCpt<AIBuildingEntity>(gameObject);
         buildingAI.InitData(this);
+
     }
 
     public void SetData(BuildingInfoBean buildingInfoData)
@@ -19,6 +22,13 @@ public class Building : GameBaseItem
         currentLife = buildingInfoData.attribute_life;
         currentMaxLife = buildingInfoData.attribute_life;
         currentAtk = buildingInfoData.attribute_atk;
+
+        tfNew = CptUtil.GetCptInChildrenByName<Transform>(gameObject, "New");
+        tfOld = CptUtil.GetCptInChildrenByName<Transform>(gameObject, "Old");
+        if (tfNew)
+            tfNew.gameObject.SetActive(true);
+        if (tfOld)
+            tfOld.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -50,8 +60,8 @@ public class Building : GameBaseItem
     {
         currentLife = 0;
         gameObject.layer = LayerInfo.Dead;
-        Transform tfNew = CptUtil.GetCptInChildrenByName<Transform>(gameObject, "New");
-        Transform tfOld = CptUtil.GetCptInChildrenByName<Transform>(gameObject, "Old");
+        Collider collider= gameObject.GetComponentInChildren<Collider>();
+        collider.gameObject.layer= LayerInfo.Dead;
         if (tfNew)
             tfNew.gameObject.SetActive(false);
         if (tfOld)

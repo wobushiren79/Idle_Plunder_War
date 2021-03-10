@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [Serializable]
 public class SceneInfoBean : BaseBean
@@ -24,6 +25,18 @@ public class SceneInfoBean : BaseBean
 
     public string player_position;
     public string camera_position;
+
+    public string player_character;
+
+    public List<long> GetPlayerCharacter()
+    {
+        List<long> listData = new List<long>();
+        if (CheckUtil.StringIsNull(player_character))
+            return listData;
+        long[] dataArray = StringUtil.SplitBySubstringForArrayLong(player_character, ',');
+        listData = dataArray.ToList();
+        return listData;
+    }
 
     public EnemyTreasureData GetTreasureData()
     {

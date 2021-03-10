@@ -14,9 +14,4 @@ public class Launcher : MonoBehaviour
         GameHandler.Instance.InitGame(actionForStartGame);
     }
 
-    void Update()
-    {
-        
-    }
-
 }
