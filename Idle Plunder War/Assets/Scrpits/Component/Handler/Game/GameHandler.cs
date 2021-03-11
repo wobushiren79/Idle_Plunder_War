@@ -70,7 +70,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         }
         GameBean gameData = manager.gameData;
         gameData.gameSceneNumber++;
-        if (gameData.gameSceneNumber > 4)
+        if (gameData.gameSceneNumber > 5)
         {
             gameData.gameSceneNumber = 1;
         }
