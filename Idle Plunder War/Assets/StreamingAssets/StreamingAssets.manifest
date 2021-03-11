@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2019512738
+CRC: 3893131160
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -9,23 +9,23 @@ AssetBundleManifest:
       Name: character/base
       Dependencies: {}
     Info_2:
-      Name: ui/ui
+      Name: building/building
       Dependencies: {}
     Info_3:
-      Name: treasure/base
+      Name: ui/ui
       Dependencies: {}
     Info_4:
-      Name: treasure/treasure
+      Name: model/atk
       Dependencies: {}
     Info_5:
-      Name: building/building
+      Name: treasure/base
       Dependencies: {}
     Info_6:
       Name: building/base
       Dependencies: {}
     Info_7:
-      Name: model/atk
+      Name: effect/effect
       Dependencies: {}
     Info_8:
-      Name: effect/effect
+      Name: treasure/treasure
       Dependencies: {}

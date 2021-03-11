@@ -8,7 +8,7 @@ public class GameConfigBean
     //屏幕模式 0窗口  1全屏
     public int window = 0;
     //语言
-    public string language="cn";
+    public string language="en";
     //音效大小
     public float soundVolume = 0.5f;
     //音乐大小

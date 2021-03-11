@@ -86,4 +86,5 @@ public class CharacterHandler : BaseHandler<CharacterHandler, CharacterManager>
             itemCharacter.RefreshData();
         }
     }
+
 }
