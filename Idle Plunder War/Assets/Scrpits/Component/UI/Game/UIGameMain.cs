@@ -3,33 +3,26 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack
+public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack, UIViewForAttributeUp.ICallBack
 {
     public UIChildForCountDown ui_CountDown;
     public Text ui_TvGold;
     public UIViewForLevelUp ui_LevelUp;
 
-    public Button ui_BtPowerAdd;
-    public Button ui_BtNumberAdd;
-    public Button ui_BtPriceAdd;
 
-    public Text ui_TvPowerLevel;
-    public Text ui_TvNumberLevel;
-    public Text ui_TvPriceLevel;
-
-    public Text ui_TvPowerMoney;
-    public Text ui_TvNumberMoney;
-    public Text ui_TvPriceMoney;
+    public UIViewForAttributeUp ui_Power;
+    public UIViewForAttributeUp ui_Number;
+    public UIViewForAttributeUp ui_Price;
 
     public override void Awake()
     {
         base.Awake();
-        if (ui_BtPowerAdd)
-            ui_BtPowerAdd.onClick.AddListener(OnClickForPower);
-        if (ui_BtNumberAdd)
-            ui_BtNumberAdd.onClick.AddListener(OnClickForNumber);
-        if (ui_BtPriceAdd)
-            ui_BtPriceAdd.onClick.AddListener(OnClickForPrice);
+        if (ui_Power)
+            ui_Power.SetCallBack(this);
+        if (ui_Number)
+            ui_Number.SetCallBack(this);
+        if (ui_Price)
+            ui_Price.SetCallBack(this);
         if (ui_LevelUp)
             ui_LevelUp.SetCallBack(this);
         RefreshUI();
@@ -75,24 +68,21 @@ public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack
     {
         GameBean gameData = GameHandler.Instance.manager.gameData;
         LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForPower(gameData.levelForPower);
-        ui_TvPowerLevel.text = "Lv." + gameData.levelForPower;
-        ui_TvPowerMoney.text = levelInfo.pre_gold + "";
+        ui_Power.SetData(gameData.levelForPower, levelInfo.pre_gold);
     }
 
     public void SetNumberInfo()
     {
         GameBean gameData = GameHandler.Instance.manager.gameData;
         LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForNumber(gameData.levelForNumber);
-        ui_TvNumberLevel.text = "Lv." + gameData.levelForNumber;
-        ui_TvNumberMoney.text = levelInfo.pre_gold + "";
+        ui_Number.SetData(gameData.levelForNumber, levelInfo.pre_gold);
     }
 
     public void SetPriceInfo()
     {
         GameBean gameData = GameHandler.Instance.manager.gameData;
         LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForPrice(gameData.levelForPrice);
-        ui_TvPriceLevel.text = "Lv." + gameData.levelForPrice;
-        ui_TvPriceMoney.text = levelInfo.pre_gold + "";
+        ui_Price.SetData(gameData.levelForPrice, levelInfo.pre_gold);
     }
 
     public void OnClickForPower()
@@ -145,6 +135,22 @@ public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack
         gameData.AddGold((long)levelData);
         gameData.LevelUpForLevel();
         RefreshUI();
+    }
+
+    public void OnClickForAttributeAdd(UIViewForAttributeUp view)
+    {
+        if (view == ui_Power)
+        {
+            OnClickForPower();
+        }
+        else if (view == ui_Number)
+        {
+            OnClickForNumber();
+        }
+        else if (view == ui_Price)
+        {
+            OnClickForPrice();
+        }
     }
     #endregion
 }

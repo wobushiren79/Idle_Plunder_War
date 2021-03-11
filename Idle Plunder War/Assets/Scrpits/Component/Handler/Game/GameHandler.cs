@@ -95,19 +95,6 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         }
     }
 
-    /// <summary>
-    /// 创建友方
-    /// </summary>
-    /// <param name="userTeam"></param>
-    public void CreatePlayer(UserTeamBean userTeam, Vector3 buildPosition, Vector3 buildAngle)
-    {
-        List<long> listMember = userTeam.listMember;
-        for (int i = 0; i < listMember.Count; i++)
-        {
-            long memberId = listMember[i];
-            CharacterHandler.Instance.CreatePlayerCharacter(memberId, buildPosition + new Vector3(1, 0, 0) * 0.5f * i, buildAngle);
-        }
-    }
 
     /// <summary>
     /// 创建建筑
@@ -158,15 +145,38 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
                 LevelInfoBean levelInfo = manager.GetLevelInfoForNumber(gameData.levelForNumber);
                 levelInfo.GetData(out float levelData);
                 int teamNumber = (int)levelData;
+                List<long> listMember = userData.teamData.listMember;
+                int totalNumber = teamNumber * listMember.Count + listAddCharacterData.Count;
+                int numberHorizontal = 0;
+                int numberVertical = 0;
+                float offset = 0.5f;
                 for (int i = 0; i < teamNumber; i++)
                 {
-                    CreatePlayer(userData.teamData, playerPostion + new Vector3(0,0,1) * 0.5f * i, playerAngle);
+                    for (int f = 0; f < listMember.Count; f++)
+                    {
+                        long memberId = listMember[f];
+                        CharacterHandler.Instance.CreatePlayerCharacter(memberId, playerPostion + new Vector3(offset * numberHorizontal, 0, offset * numberVertical), playerAngle);
+
+                        numberHorizontal++;
+                        if (numberHorizontal > (int)Math.Sqrt(totalNumber))
+                        {
+                            numberHorizontal = 0;
+                            numberVertical++;
+                        }
+                    }
                 }
                 //创建场景添加
                 for (int i = 0; i < listAddCharacterData.Count; i++)
                 {
                     long itemId = listAddCharacterData[i];
-                    CharacterHandler.Instance.CreatePlayerCharacter(itemId, playerPostion, playerAngle);
+                    CharacterHandler.Instance.CreatePlayerCharacter(itemId, playerPostion + new Vector3(offset * numberHorizontal, 0, offset * numberVertical), playerAngle);
+
+                    numberHorizontal++;
+                    if (numberHorizontal > totalNumber / 2)
+                    {
+                        numberHorizontal = 0;
+                        numberVertical++;
+                    }
                 }
             }
 
@@ -186,7 +196,7 @@ public class GameHandler : BaseHandler<GameHandler, GameManager>
         {
             LevelInfoBean levelInfo = manager.GetLevelInfoForLevelUp(gameData.levelForUp);
             gameData.AddLevelUpPro(levelInfo.pro);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 }

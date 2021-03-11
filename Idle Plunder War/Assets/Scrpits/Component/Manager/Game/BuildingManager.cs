@@ -3,19 +3,46 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class BuildingManager : BaseManager,IBuildingInfoView
+public class BuildingManager : BaseManager, IBuildingInfoView
 {
 
     protected BuildingInfoController controllerForBuildingInfo;
-    //宝藏模型数据
+    //建筑模型数据
     public Dictionary<string, GameObject> dicModel = new Dictionary<string, GameObject>();
-    //宝藏信息数据
+    //建筑信息数据
     public Dictionary<long, BuildingInfoBean> dicBuildingInfo = new Dictionary<long, BuildingInfoBean>();
 
     public List<Building> listBuilding = new List<Building>();
     private void Awake()
     {
         InitAllBuildingInfo();
+    }
+
+
+    /// <summary>
+    /// 分配建筑
+    /// </summary>
+    /// <param name="character"></param>
+    public Building DistributeBuilding(Character character)
+    {
+        float minDistance = float.MaxValue;
+        Building targetBuilding = null;
+        for (int i = 0; i < listBuilding.Count; i++)
+        {
+            Building itemBuilding = listBuilding[i];
+            if (itemBuilding.buildingInfoData.GetBuildingType() != BuildingTypeEnum.Atk || itemBuilding.currentLife <= 0)
+            {
+                continue;
+            }
+            //选择距离最近的对手
+            float tempDis = Vector3.Distance(character.transform.position, itemBuilding.transform.position);
+            if (tempDis < minDistance)
+            {
+                targetBuilding = itemBuilding;
+                minDistance = tempDis;
+            }
+        }
+        return targetBuilding;
     }
 
     /// <summary>
@@ -43,7 +70,7 @@ public class BuildingManager : BaseManager,IBuildingInfoView
     {
         if (dicBuildingInfo == null)
             return null;
-        if(dicBuildingInfo.TryGetValue(buildingId,out BuildingInfoBean value))
+        if (dicBuildingInfo.TryGetValue(buildingId, out BuildingInfoBean value))
         {
             return value;
         }

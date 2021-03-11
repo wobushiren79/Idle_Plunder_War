@@ -959,7 +959,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2364644601643065391}
   - component: {fileID: 5797584492564627903}
-  - component: {fileID: 3308503403207482458}
   m_Layer: 5
   m_Name: ChildAttributeAdd
   m_TagString: Untagged
@@ -995,32 +994,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4810354889209842876}
   m_CullTransparentMesh: 0
---- !u!114 &3308503403207482458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4810354889209842876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38347525e0bf259498f5d5aa6b587672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiComponent: {fileID: 0}
-  ui_BtSpeedAdd: {fileID: 0}
-  ui_BtNumberAdd: {fileID: 0}
-  ui_BtGoldPriceAdd: {fileID: 0}
-  ui_TvTitleSpeed: {fileID: 0}
-  ui_TvSpeedLevel: {fileID: 0}
-  ui_TvSpeedMoney: {fileID: 0}
-  ui_TvTitleNumber: {fileID: 0}
-  ui_TvNumberLevel: {fileID: 0}
-  ui_TvNumberMoney: {fileID: 0}
-  ui_TvTitleGoldPrice: {fileID: 0}
-  ui_TvGoldPriceLevel: {fileID: 0}
-  ui_TvGoldPriceMoney: {fileID: 0}
-  color_MoneyOutline: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &5384686062056151284
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,15 +1679,9 @@ MonoBehaviour:
   ui_CountDown: {fileID: 0}
   ui_TvGold: {fileID: 0}
   ui_LevelUp: {fileID: 0}
-  ui_BtPowerAdd: {fileID: 0}
-  ui_BtNumberAdd: {fileID: 0}
-  ui_BtPriceAdd: {fileID: 0}
-  ui_TvPowerLevel: {fileID: 0}
-  ui_TvNumberLevel: {fileID: 0}
-  ui_TvPriceLevel: {fileID: 0}
-  ui_TvPowerMoney: {fileID: 0}
-  ui_TvNumberMoney: {fileID: 0}
-  ui_TvPriceMoney: {fileID: 0}
+  ui_Power: {fileID: 0}
+  ui_Number: {fileID: 0}
+  ui_Price: {fileID: 0}
 --- !u!1 &8087757649057847344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,7 +1881,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 55205571747861486, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: TvPowerLevel
+      value: TvLevel
       objectReference: {fileID: 0}
     - target: {fileID: 768758866428899742, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Pivot.x
@@ -2006,7 +1973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1452643525993889434, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: ItemAttributePower
+      value: Power
       objectReference: {fileID: 0}
     - target: {fileID: 1721581671818572545, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_fontSize
@@ -2062,11 +2029,11 @@ PrefabInstance:
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 7301529764986846650, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: BtPowerAdd
+      value: BtAdd
       objectReference: {fileID: 0}
     - target: {fileID: 8345485339492595435, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: TvPowerMoney
+      value: TvMoney
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
@@ -2084,7 +2051,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 55205571747861486, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: TvNumberLevel
+      value: TvLevel
       objectReference: {fileID: 0}
     - target: {fileID: 768758866428899742, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Pivot.x
@@ -2176,7 +2143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1452643525993889434, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: ItemAttributeNumber
+      value: Number
       objectReference: {fileID: 0}
     - target: {fileID: 1721581671818572545, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_fontSize
@@ -2236,11 +2203,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7301529764986846650, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: BtNumberAdd
+      value: BtAdd
       objectReference: {fileID: 0}
     - target: {fileID: 8345485339492595435, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: TvNumberMoney
+      value: TvMoney
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
@@ -2258,7 +2225,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 55205571747861486, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: TvPriceLevel
+      value: TvLevel
       objectReference: {fileID: 0}
     - target: {fileID: 768758866428899742, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Pivot.x
@@ -2350,7 +2317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1452643525993889434, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: ItemAttributePrice
+      value: Price
       objectReference: {fileID: 0}
     - target: {fileID: 1721581671818572545, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_fontSize
@@ -2410,11 +2377,11 @@ PrefabInstance:
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 7301529764986846650, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: BtPriceAdd
+      value: BtAdd
       objectReference: {fileID: 0}
     - target: {fileID: 8345485339492595435, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}
       propertyPath: m_Name
-      value: TvPriceMoney
+      value: TvMoney
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4f28316fecd39a4085186a5f51a010e, type: 3}

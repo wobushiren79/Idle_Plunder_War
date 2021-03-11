@@ -28,13 +28,17 @@ public class IntentCharacterForPlayerIdle : AIBaseIntent
             //移动到对手位置
             characterAI.moveTarget = aiCharacter.rivalCharacter.transform.position;
             characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToRival);
+            return;
         }
-        else
+        aiCharacter.targetBuilding = BuildingHandler.Instance.manager.DistributeBuilding(characterAI.character);
+        if (aiCharacter.targetBuilding != null)
         {
-            //前往宝藏
-            characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToTreasure);
-        }
-        //characterAI.character.characterAnim.PlayIdle();
+            //往建筑移动
+            characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToBuilding);
+            return;
+        }      
+        //前往宝藏
+        characterAI.ChangeIntent(AIIntentEnum.CharacterMoveToTreasure);
     }
 
     public override void IntentLeaving()
