@@ -249,9 +249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ee33c37701ab4418a50b9dd2b94393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui_IvBackground: {fileID: 4036538189698906991}
   ui_BtAdd: {fileID: 3793483947398907447}
   ui_TvLevel: {fileID: 7929309530398364162}
   ui_TvMoney: {fileID: 2846783800309252644}
+  spBackUnClick: {fileID: 21300000, guid: 931b35e0f6f38944f9c6c692991f4ec0, type: 3}
+  spBackClick: {fileID: 21300000, guid: 2f108bce483afc04d9def03e63b109a3, type: 3}
 --- !u!1 &5763457485954255973
 GameObject:
   m_ObjectHideFlags: 0

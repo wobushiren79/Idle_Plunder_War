@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class UIViewForAttributeUp : BaseMonoBehaviour
 {
+    public Image ui_IvBackground;
 
     public Button ui_BtAdd;
 
@@ -11,12 +12,35 @@ public class UIViewForAttributeUp : BaseMonoBehaviour
 
     public Text ui_TvMoney;
 
+    public Sprite spBackUnClick;
+    public Sprite spBackClick;
+
     protected ICallBack callBack;
 
-    public void SetData(int level,long gold)
+    private void Awake()
+    {
+        if (ui_BtAdd)
+            ui_BtAdd.onClick.AddListener(OnClickForAdd);
+    }
+
+    public void OnClickForAdd()
+    {
+        if (callBack != null)
+            callBack.OnClickForAttributeAdd(this);
+    }
+
+    public void SetData(int level,long gold,bool isClick)
     {
         ui_TvLevel.text = "Lv." + level;
         ui_TvMoney.text = gold + "";
+        if (isClick)
+        {
+            ui_IvBackground.sprite = spBackClick;
+        }
+        else
+        {
+            ui_IvBackground.sprite = spBackUnClick;
+        }
     }
 
     public void SetCallBack(ICallBack callBack)

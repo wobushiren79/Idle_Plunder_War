@@ -51,6 +51,11 @@ public class IntentCharacterForMoveToBuilding : AIBaseIntent
         {
             characterAI.ChangeIntent(AIIntentEnum.CharacterAtkBuilding);
         }
+        else
+        {
+            Vector3 buildingPosition = characterAI.targetBuilding.transform.position;
+            characterAI.character.characterMove.SetDestination(buildingPosition);
+        }
     }
 
     /// <summary>

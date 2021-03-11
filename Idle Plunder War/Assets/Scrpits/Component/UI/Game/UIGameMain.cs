@@ -9,7 +9,6 @@ public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack, UIViewFor
     public Text ui_TvGold;
     public UIViewForLevelUp ui_LevelUp;
 
-
     public UIViewForAttributeUp ui_Power;
     public UIViewForAttributeUp ui_Number;
     public UIViewForAttributeUp ui_Price;
@@ -33,6 +32,8 @@ public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack, UIViewFor
         SetTimeCountDown();
         SetGold();
         SetLevelUpPro();
+
+        RefreshUI();
     }
 
     public override void RefreshUI()
@@ -68,21 +69,24 @@ public class UIGameMain : BaseUIComponent, UIViewForLevelUp.ICallBack, UIViewFor
     {
         GameBean gameData = GameHandler.Instance.manager.gameData;
         LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForPower(gameData.levelForPower);
-        ui_Power.SetData(gameData.levelForPower, levelInfo.pre_gold);
+        bool isClick = levelInfo.pre_gold > gameData.gold ? false : true;
+        ui_Power.SetData(gameData.levelForPower, levelInfo.pre_gold, isClick);
     }
 
     public void SetNumberInfo()
     {
         GameBean gameData = GameHandler.Instance.manager.gameData;
         LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForNumber(gameData.levelForNumber);
-        ui_Number.SetData(gameData.levelForNumber, levelInfo.pre_gold);
+        bool isClick = levelInfo.pre_gold > gameData.gold ? false : true;
+        ui_Number.SetData(gameData.levelForNumber, levelInfo.pre_gold, isClick);
     }
 
     public void SetPriceInfo()
     {
         GameBean gameData = GameHandler.Instance.manager.gameData;
         LevelInfoBean levelInfo = GameHandler.Instance.manager.GetLevelInfoForPrice(gameData.levelForPrice);
-        ui_Price.SetData(gameData.levelForPrice, levelInfo.pre_gold);
+        bool isClick = levelInfo.pre_gold > gameData.gold ? false : true;
+        ui_Price.SetData(gameData.levelForPrice, levelInfo.pre_gold, isClick);
     }
 
     public void OnClickForPower()

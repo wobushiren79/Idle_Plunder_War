@@ -13,4 +13,5 @@ public class TreasureInfoBean : BaseBean
 {
     public string model_name;
     public int attribute_life;
+    public long price = 1;
 }
